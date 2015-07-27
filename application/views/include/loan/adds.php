@@ -1,5 +1,6 @@
  
 <!DOCTYPE html>
+
 <html>
 <head>
     <meta charset="utf-8">
@@ -66,17 +67,23 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
+                                    <h4>Customer Information</h4>
                                 <form role="form">
                                         <div class="form-group">
-                                            <label>Frist Name</label>
-                                            <input class="form-control" name="fname">
+                                            <label>CID</label>
+                                            <input class="form-control" name="search_id_name" placeholder="search name,id">
                                         </div>
                                         <div class="form-group">
-                                            <label>Last Name</label>
-                                            <input class="form-control" placeholder="Enter text" name="lname">
+                                            <label>Please Name: Phan Saorin</label>
+                                             
+                                            <!-- <input class="form-control" placeholder="Enter text" name="lname"> -->
                                         </div>
                                         <div class="form-group">
-                                            <label>Phone Number</label>
+                                            <label>Date Of Birth: 23-Aug-1993 Female</label>
+                                            <!-- <input class="form-control" placeholder="Enter text" name="phone"> -->
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Address: NO,371Eo,Kan Chamka Mon, Cambodian</label>
                                             <input class="form-control" placeholder="Enter text" name="phone">
                                         </div>
                                         <div class="form-group">
@@ -87,28 +94,104 @@
                                                 <option>Project Manager</option>
                                             </select>
                                         </div>
-                                        <div class="form-group">
-                                            <label>Current Address</label>
-                                            <textarea class="form-control" rows="3"></textarea>
-                                        </div>
-                                        <button type="button" class="btn btn-primary">Save</button>
-                                </form>
+
                               
                        </div>
                             
                           
                             <!-- The end of col 6 -->
                             <div class="col-lg-6">
-
-                                     <div class="form-group">
-                                            <label>Frist Name</label>
-                                            <input class="form-control" name="fname">
+                                <h4>Loan Space</h4>
+                                    <div class="form-group">
+                                            <label>Owner Typer</label>
+                                            <select class="form-control">
+                                                <option>--Please select --</option>
+                                                <option>Female</option>
+                                                <option>Male</option>
+                                            </select>
                                         </div>
                                         <div class="form-group">
-                                            <label>Last Name</label>
-                                            <input class="form-control" placeholder="Enter text" name="lname">
+                                            <label>Currency</label>
+                                            <select class="form-control">
+                                                <option>--Please select --</option>
+                                                <option>KHR(រ)</option>
+                                                <option>Dolla ($)</option>
+                                            </select>
+                                        </div>
+                                         <div class="form-group">
+                                            <label>Mayment Freg</label>
+                                            <select class="form-control">
+                                                <option>--Please select --</option>
+                                                <option>Weekly</option>
+                                                <option>Monthly)</option>
+                                            </select>
+                                        </div>
+                                     <div class="form-group">
+                                            <label>Loan Amount</label>
+                                            <input class="form-control" name="amount_loan" placeholder="4000">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Amo In Word</label>
+                                            <input class="form-control" placeholder="sixty dolla" name="amount_word">
                                         </div>
                             </div>
+                            </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <h4>Project Detail</h4>
+
+                                <div class="form-group">
+                                    <label>Product Type</label>
+                                        <select class="form-control">
+                                                <option>--Please select --</option>
+                                                <option>400,001RIEL -600,00RIEL</option>
+                                                <option>400,001RIEL -600,00RIEL)</option>
+                                            </select>
+                                        </div>
+
+                            </div>
+                            <div class="col-lg-6">
+                                <h4>Installment</h4>
+
+                                <div class="form-group">
+                                            <label>Num Installment</label>
+                                            <input class="form-control" name="amount_loan" placeholder="4000">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Interst Rate</label>
+                                            <input class="form-control" placeholder="sixty dolla" name="amount_word">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Installment Ammount</label>
+                                            <input class="form-control" placeholder="sixty dolla" name="amount_word">
+                                        </div>
+                                        <button type="button" class="btn btn-primary">Save</button>
+
+                            </div>
+                            
+                            </form>
+
+                        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                               </div>
                           
                     </div>
