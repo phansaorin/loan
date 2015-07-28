@@ -33,132 +33,177 @@
             </div>
 
         </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Principle Owner Information</h3>
+                <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <div class="col-md-5">CID</div>
+                    <div class="col-md-7">000001</div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-5">Customer Name</div>
+                    <div class="col-md-7">Chhingchhing HEM</div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-5">Date Of Birth</div>
+                    <div class="col-md-7">01-05-1980</div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-5">Gender/Married</div>
+                    <div class="col-md-7">Female/Single</div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-5">Address</div>
+                    <div class="col-md-7">17, 604, Toul kork, Phnom Penh</div>
+                </div>
+            </div>
+
+        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Product Owner Information</h3>
+                <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <div class="col-md-5">Product Type</div>
+                    <div class="col-md-7">100000 Riel - 200000 Riel</div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-5">Currency</div>
+                    <div class="col-md-7">USD</div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-5">Account Status</div>
+                    <div class="col-md-7">Pending</div>
+                </div>
+            </div>
+
+        </div>
     </div>  
     <div class="col-md-6">
-        <div class="panel panel-primary">
+        <!-- <div class="panel panel-primary">
             <div class="panel-heading">
                 <h3 class="panel-title">Panel 1</h3>
                 <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
             </div>
             <div class="panel-body">Panel content</div>
-        </div>
+        </div> -->
+        <div class="panel with-nav-tabs panel-primary">
+                <div class="panel-heading">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#tabLoanSpace" data-toggle="tab">Loan Space</a></li>
+                            <li><a href="#tabRepayment" data-toggle="tab">Repayment</a></li>
+                        </ul>
+                </div>
+                <div class="panel-body">
+                    <div class="tab-content">
+                        <div class="tab-pane fade in active" id="tabLoanSpace">
+                            <div class="form-group">
+                                <div class="col-md-5">Loan Amount</div>
+                                <div class="col-md-7">4000000</div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">Interest Rate</div>
+                                <div class="col-md-7">1.8</div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">Penulty Rate</div>
+                                <div class="col-md-7">&nbsp;</div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">First Repayment</div>
+                                <div class="col-md-7">07-08-2015</div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">Maturity Date</div>
+                                <div class="col-md-7">01-08-2015</div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">Number of Installment</div>
+                                <div class="col-md-7">1</div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">Repayment Freg</div>
+                                <div class="col-md-7">Weekly</div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">Installment Amount</div>
+                                <div class="col-md-7">37400</div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="tabRepayment">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr class="filters">
+                                            <th>#</th>
+                                            <th>Pay Date</th>
+                                            <th>First Balanch</th>
+                                            <th>Principle</th>
+                                            <th>Total Payment</th>
+                                            <th>Rate</th>
+                                            <th>Saved Money</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Mark</td>
+                                            <td>Otto</td>
+                                            <td>@mdo</td>
+                                            <td>Mark</td>
+                                            <td>Otto</td>
+                                            <td>@mdo</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>Jacob</td>
+                                            <td>Thornton</td>
+                                            <td>@fat</td>
+                                            <td>Mark</td>
+                                            <td>Otto</td>
+                                            <td>@mdo</td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td>Larry</td>
+                                            <td>the Bird</td>
+                                            <td>@twitter</td>
+                                            <td>Mark</td>
+                                            <td>Otto</td>
+                                            <td>@mdo</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3"><label class="pull-right">Total</label></td>
+                                            <td>2334555</td>
+                                            <td>345656</td>
+                                            <td>34540</td>
+                                            <td>0.00</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
     </div>   
 </div>
-
-
 <div class="row">
-    <form role="form">
-        <div class="col-lg-6">
-            <div class="form-group">
-                <label for="inputCustomerName">Customer Name</label>
-                <div class="input-group">
-                    <input type="text" class="form-control" name="inputCustomerName" id="inputCustomerName" placeholder="Customer Name" readonly required>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="inputAccountNumber">Account Number Loan</label>
-                <div class="input-group">
-                    <input type="text" class="form-control" id="inputAccountNumber" name="inputAccountNumber" placeholder="Account Number Loan" readonly required>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="inputAmountLoan">Amount Money Loan</label>
-                <div class="input-group">
-                    <input type="text" class="form-control" id="inputAmountLoan" name="inputAmountLoan" placeholder="Amount Money Loan" readonly required>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="inputRateDaily">Rate Daily</label>
-                <div class="input-group">
-                    <input type="text" class="form-control" id="inputRateDaily" name="inputRateDaily" placeholder="Rate Daily" readonly required>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="inputDurationLoan">Duration Loan</label>
-                <div class="input-group">
-                    <input type="text" class="form-control" id="inputDurationLoan" name="inputDurationLoan" placeholder="Duration Loan" readonly required>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="inputDateFirstPay">Date First Pay</label>
-                <div class="input-group">
-                    <input type="text" class="form-control" id="inputDateFirstPay" name="inputDateFirstPay" placeholder="Date First Pay" readonly required>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="address">Address</label>
-                <div class="input-group">
-                    <textarea name="address" id="address" class="form-control" rows="5" placeholder="Address" readonly required></textarea>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
-                </div>
-            </div>
-
+    <div class="form-group pull-right">
+        <div class="col-md-12 col-xs-10"> <!-- col-xs-offset-2: for to left-->
+            <button type="submit" class="btn btn-danger" disabled="disabled">Disapprove</button>
+            <button type="submit" class="btn btn-primary">Approve</button>
+            <button type="submit" class="btn btn-default">Exit</button>
         </div>
-
-        <div class="col-lg-6">
-            <div class="form-group">
-                <label for="inputAccountNumberServe">Account Number Serve</label>
-                <div class="input-group">
-                    <input type="text" class="form-control" name="inputAccountNumberServe" id="inputAccountNumberServe" placeholder="Account Number Serve" readonly required>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
-                </div>
-            </div>
-            <div class="well well-sm"><strong><span class="glyphicon glyphicon-asterisk"></span>Required Field</strong></div>
-            <div class="form-group">
-                <label for="inputRatePaidTotal">Rate Paid Total</label>
-                <div class="input-group">
-                    <input type="text" class="form-control" id="inputRatePaidTotal" name="inputRatePaidTotal" placeholder="Rate Paid Total" readonly required>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="inputRatePaidTotalPriciple">Rate Paid Total + Priciple</label>
-                <div class="input-group">
-                    <input type="text" class="form-control" id="inputRatePaidTotalPriciple" name="inputRatePaidTotalPriciple" placeholder="Rate Paid Total + Priciple" readonly required>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="inputAmountSavedTotal">Amount Saved Total</label>
-                <div class="input-group">
-                    <input type="text" class="form-control" id="inputAmountSavedTotal" name="inputAmountSavedTotal" placeholder="Amount Saved Total" readonly required>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-12">
-                <div class="col-md-6">Signature of Creator</div>
-                <div class="col-md-6">Finger Print of Customer</div>
-                </div>
-            </div>
-            <!-- <div class="form-group">
-                <label for="InputMessage">Enter Message</label>
-                <div class="input-group">
-                    <textarea name="InputMessage" id="InputMessage" class="form-control" rows="5" readonly required></textarea>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
-                </div>
-            </div> -->
-            <!-- <input type="submit" name="submit" id="submit" value="Submit" class="btn btn-info pull-right"> -->
-        </div>
-    </form>
-    <!-- <div class="clearfix"></div>
-    <div class="col-lg-5 col-md-push-1">
-        <div class="col-md-12">
-            <div class="alert alert-success">
-                <strong><span class="glyphicon glyphicon-ok"></span> Success! Message sent.</strong>
-            </div>
-            <div class="alert alert-danger">
-                <span class="glyphicon glyphicon-remove"></span><strong> Error! Please check all page inputs.</strong>
-            </div>
-        </div>
-    </div> -->
+    </div>
 </div>
+<div class="row footer">&nbsp;</div>
+
 
 
 
