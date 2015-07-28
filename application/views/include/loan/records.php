@@ -79,34 +79,25 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <?php 
+                                        // var_dump($open_loan);
+                                        foreach ($open_loan as $value) {
+                                            $cus_id = $value->id;
+                                            $custer_fname = $value->first_name_english;
+                                            $custer_lname = $value->last_name_english;
+                                            $phone = $value->home_number;
+                                            $address = $value->province;
+                                            // echo $custer_name;
+                                        ?>
                                         <tr class="odd gradeX">
-                                            <td>Trident</td>
-                                            <td>Internet Explorer 4.0</td>
-                                            <td>Win 95+</td>
-                                            <td class="center">4</td>
-                                            <td class="center">X</td>
+                                            <td><?php echo $cus_id; ?></td>
+                                            <td><?php echo $custer_fname.''.$custer_lname;?></td>
+                                            <td class="center"><?php echo $phone;?></td>
+                                            <td class="center"><?php echo $address;?></td>
+                                            <td></td>
                                         </tr>
-                                        <tr class="even gradeC">
-                                            <td>Trident</td>
-                                            <td>Internet Explorer 5.0</td>
-                                            <td>Win 95+</td>
-                                            <td class="center">5</td>
-                                            <td class="center">C</td>
-                                        </tr>
-                                        <tr class="odd gradeA">
-                                            <td>Trident</td>
-                                            <td>Internet Explorer 5.5</td>
-                                            <td>Win 95+</td>
-                                            <td class="center">5.5</td>
-                                            <td class="center">A</td>
-                                        </tr>
-                                        <tr class="gradeC">
-                                            <td>Misc</td>
-                                            <td>PSP browser</td>
-                                            <td>PSP</td>
-                                            <td class="center">-</td>
-                                            <td class="center">C</td>
-                                        </tr>
+                                        <?php }?>
+                                       
                                     </tbody>
                                 </table>
                             </div>

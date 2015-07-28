@@ -10,6 +10,9 @@ class Loan extends CI_Controller {
         }
         public function records(){
           $data['controller_name'] = 'Hello user'; 
+          // $data ['query'] = $this->bidding_model->viewauction();
+          $data['open_loan'] = $this->mod_loan->open_loan();
+          var_dump($data['open_loan']);
           $this->load->view('include/loan/records', $data);
         }
         public function addLoan(){
