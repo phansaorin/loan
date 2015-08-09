@@ -62,6 +62,9 @@
                         <li>
                             <?php echo anchor('loan/addLoan', 'Add Loan');//echo "<a href=''>Add Staffs</a>"; ?>
                         </li>
+                        <li>
+                            <?php echo anchor('loan/disturbment_voucher', 'Disturbment VoucherAdd');//echo "<a href=''>Add Staffs</a>"; ?>
+                        </li>
                     </ul>
                     <!-- second-level-items -->
                 </li>

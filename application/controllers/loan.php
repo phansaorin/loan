@@ -23,6 +23,10 @@ class Loan extends CI_Controller {
           $data['controller_name'] = 'Hello user'; 
           $this->load->view('include/loan/details', $data);
         }
+         public function disturbment_voucher(){
+          $data['controller_name'] = 'Hello user'; 
+          $this->load->view('include/loan/disturbment_voucher', $data);
+        }
 }
 
 /* End of file welcome.php */
