@@ -36,7 +36,7 @@
             <!--end search section-->
             <!--</li>-->
             <?php
-            if ($this->session->userdata('use_type') == 'admin') {
+            // if ($this->session->userdata('use_type') == 'admin') {
                 ?>  
                 <!-- Start of User  -->
                 <li>
@@ -62,12 +62,15 @@
                         <li>
                             <?php echo anchor('loan/addLoan', 'Add Loan');//echo "<a href=''>Add Staffs</a>"; ?>
                         </li>
+                        <li>
+                            <?php echo anchor('loan/disturbment_voucher', 'Disturbment VoucherAdd');//echo "<a href=''>Add Staffs</a>"; ?>
+                        </li>
                     </ul>
                     <!-- second-level-items -->
                 </li>
                 <?php
                 /* HR User Menu */
-            }?>
+            // }?>
                 <!-- End of Attendent -->
             
         </ul>

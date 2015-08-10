@@ -1,6 +1,4 @@
- 
 <!DOCTYPE html>
-
 <html>
 <head>
     <meta charset="utf-8">
@@ -38,11 +36,11 @@
       <!--  wrapper -->
        <div id="wrapper">
         <!-- start navbar top -->
-        <?php echo $this->load->view('partial/header')?>
+        <?php $this->load->view('partial/header')?>
          <!-- end navbar top -->
 
         <!-- right navbar side -->
-        <?php echo $this->load->view('partial/nav_right'); ?>
+        <?php $this->load->view('partial/nav_right'); ?>
         <!-- right navbar side -->
         <!--  page-wrapper -->
         <?php //echo $this->load->view('partial/form');?>
@@ -50,24 +48,18 @@
     <div id="wrapper">
         <!--  page-wrapper -->
         <div id="page-wrapper">
-
-            
-            <div class="row">
-                 <!--  page header -->
-                <div class="col-lg-12">
-                    <h1 class="page-header">User Management</h1>
+          <div class="row">
+             <div class="panel panel-default">
+                <div class="panel-heading">
                 </div>
-                 <!-- end  page header -->
-            </div>
-                    <!-- Advanced Tables -->
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                          <input type="submit" class="btn btn-primary" value="Add New Loan">
-                        </div>
-                        <div class="panel-body">
-                            <div class="row">
+                <div class="panel-body">
+                  <div class="col-lg-12">
+                    <div class="col-lg-6">Hello one</div>
+                    <div class="col-lg-6">Hello one</div>
+                  </div>
+                 <center><h3>Loan Disturbment Voucher</h3></center> 
+                  <div class="row" style="border: solid 1px;">
                                 <div class="col-lg-6">
-                                    <h4>Customer Information</h4>
                                 <form role="form">
                                         <div class="form-group">
                                             <label>CID</label>
@@ -101,7 +93,6 @@
                           
                             <!-- The end of col 6 -->
                             <div class="col-lg-6">
-                                <h4>Loan Space</h4>
                                     <div class="form-group">
                                             <label>Owner Typer</label>
                                             <select class="form-control">
@@ -136,77 +127,8 @@
                                         </div>
                             </div>
                             </div>
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <h4>Project Detail</h4>
-
-                                <div class="form-group">
-                                    <label>Product Type</label>
-                                        <select class="form-control">
-                                                <option>--Please select --</option>
-                                                <option>400,001RIEL -600,00RIEL</option>
-                                                <option>400,001RIEL -600,00RIEL)</option>
-                                            </select>
-                                        </div>
-
-                            </div>
-                            <div class="col-lg-6">
-                                <h4>Installment</h4>
-
-                                <div class="form-group">
-                                            <label>Num Installment</label>
-                                            <input class="form-control" name="amount_loan" placeholder="4000">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Interst Rate</label>
-                                            <input class="form-control" placeholder="sixty dolla" name="amount_word">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Installment Ammount</label>
-                                            <input class="form-control" placeholder="sixty dolla" name="amount_word">
-                                        </div>
-                                        <button type="button" class="btn btn-primary">Save</button>
-
-                            </div>
-                            
-                            </form>
-
-                        </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                              </div>
-                          
-                    </div>
-                    <!--End Advanced Tables -->
-               
+                </div>
+              
+          </div>
         </div>
-        <!-- end page-wrapper -->
-
     </div>
-    <!-- end wrapper -->
-
-          
-       </div>
-        <!-- end wrapper -->
-   </body>
-</body>
-
-</html>
