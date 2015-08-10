@@ -47,7 +47,7 @@
                     $total_pay_capital += $rows['pay_capital'];
                     $total_pay_interest += $rows['pay_interest'];
                     $total_pay_amount += $rows['pay_amount'];
-                    $total_rate += $rate;
+                    // $total_rate += $rate;
                     }
                 }
                 ?>
@@ -55,8 +55,8 @@
                         <td colspan="3"><label class="pull-right">Total</label></td>
                         <td><?php echo $total_pay_capital; ?></td>
                         <td><?php echo $total_pay_interest; ?></td>
-                        <td><?php echo $total_pay_amount; ?></td>
-                        <td><?php echo $total_rate; ?></td>
+                        <td colspan="2"><?php echo $total_pay_amount; ?></td>
+                        <!-- <td><?php echo $total_rate; ?></td> -->
                         <td><?php echo '0.00'; ?></td>
                     </tr>
                 </tbody>

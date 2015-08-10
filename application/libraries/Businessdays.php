@@ -203,7 +203,7 @@ class BusinessDays
             array_push($holidays, $year."-10-01"); // 2015-10-01
             
             // Get all the floating holidays
-            $mondays = $this->count_dows_in_month($year, 5, 1); // check to see how many Mondays are in May
+            /*$mondays = $this->count_dows_in_month($year, 5, 1); // check to see how many Mondays are in May
             $memorial_day = "";
             if ($mondays == 4) {  // if only 4 Mondays, then Memorial Day falls on the 4th Monday
                 $memorial_day = $this->get_holiday($year, 5, 1, 4);
@@ -215,7 +215,7 @@ class BusinessDays
             $thanksgiving = $this->get_holiday($year, 11, 4, 4); // Thanksgiving is 4th Thursday in November
             $day_after_thanksgiving = strtotime(date("Y-m-d", strtotime($thanksgiving)) . " +1 day");
             $day_after_thanksgiving = date('Y-m-d', $day_after_thanksgiving);
-            array_push($holidays, $memorial_day, $labor_day, $thanksgiving, $day_after_thanksgiving);
+            array_push($holidays, $memorial_day, $labor_day, $thanksgiving, $day_after_thanksgiving);*/
         }
 
         return $holidays;
@@ -369,6 +369,7 @@ class BusinessDays
         /*var_dump($workingDays);
         echo "<br/>";*/
 
+        $day_off = date('Y-m-d', $startDate);
         //We subtract the holidays
         foreach($holidays as $holiday){
             // echo $holiday;
@@ -380,7 +381,9 @@ class BusinessDays
                 $day_after_holiday = date('Y-m-d', $day_after_holiday);
                 $day_off = $day_after_holiday;
 
-                break;
+                // break;
+                $startDate = strtotime($day_off);
+
                 /*echo "Day off 1: ".$day_off;
                 echo "<br/>";*/
                 
@@ -389,7 +392,8 @@ class BusinessDays
                 $day_after_holiday = date('Y-m-d', $day_after_holiday);
                 $day_off = $day_after_holiday;
 
-                break;
+                // break;
+                $startDate = strtotime($day_off);
                 
                 /*echo "Day off 2: ".$day_off;
                 echo "<br/>";*/
@@ -398,7 +402,8 @@ class BusinessDays
                 $day_after_holiday = date('Y-m-d', $day_after_holiday);
                 $day_off = $day_after_holiday;
 
-                break;
+                // break;
+                $startDate = strtotime($day_off);
                 
                 // echo "Day off 3: ".$day_off;
                 // echo "<br/>";
@@ -407,13 +412,16 @@ class BusinessDays
                 $day_after_holiday = date('Y-m-d', $day_after_holiday);
                 $day_off = $day_after_holiday;
 
-                break;
+                // break;
+                $startDate = strtotime($day_off);
+
             } else if (date("N",$startDate) == 6) {
                 $day_after_holiday = strtotime(date("Y-m-d", $startDate) . " +2 day");
                 $day_after_holiday = date('Y-m-d', $day_after_holiday);
                 $day_off = $day_after_holiday;
 
-                break;
+                // break;
+                $startDate = strtotime($day_off);
             }
         }
 
