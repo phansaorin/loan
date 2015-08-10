@@ -52,7 +52,7 @@ $autoload['packages'] = array();
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-$autoload['libraries'] = array('form_validation','database','session');
+$autoload['libraries'] = array('form_validation','database','session','businessdays');
 
 
 /*
@@ -109,7 +109,7 @@ $autoload['language'] = array();
 |
 */
 
-$autoload['model'] = array('mod_login','mod_staff','mod_user','mod_admin','mod_loan');
+$autoload['model'] = array('mod_login','mod_staff','mod_user','mod_admin','mod_loan','Schedule');
 
 
 /* End of file autoload.php */

@@ -4,42 +4,42 @@
             <div class="form-group">
                 <label for="inputCustomerName">Customer Name</label>
                 <div class="input-group">
-                    <input type="text" class="form-control" name="inputCustomerName" id="inputCustomerName" placeholder="Customer Name" readonly required>
+                    <input type="text" class="form-control" name="inputCustomerName" id="inputCustomerName" placeholder="Customer Name" value="<?php echo $loan_info->last_name_english." ".$loan_info->first_name_english; ?>" readonly required>
                     <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
                 </div>
             </div>
             <div class="form-group">
                 <label for="inputAccountNumber">Account Number Loan</label>
                 <div class="input-group">
-                    <input type="text" class="form-control" id="inputAccountNumber" name="inputAccountNumber" placeholder="Account Number Loan" readonly required>
+                    <input type="text" class="form-control" id="inputAccountNumber" name="inputAccountNumber" placeholder="Account Number Loan" value="<?php echo $loan_info->loan_account; ?>" readonly required>
                     <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
                 </div>
             </div>
             <div class="form-group">
                 <label for="inputAmountLoan">Amount Money Loan</label>
                 <div class="input-group">
-                    <input type="text" class="form-control" id="inputAmountLoan" name="inputAmountLoan" placeholder="Amount Money Loan" readonly required>
+                    <input type="text" class="form-control" id="inputAmountLoan" name="inputAmountLoan" placeholder="Amount Money Loan" value="<?php echo $loan_info->loan_amount; ?>" readonly required>
                     <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
                 </div>
             </div>
             <div class="form-group">
                 <label for="inputRateDaily">Rate Daily</label>
                 <div class="input-group">
-                    <input type="text" class="form-control" id="inputRateDaily" name="inputRateDaily" placeholder="Rate Daily" readonly required>
+                    <input type="text" class="form-control" id="inputRateDaily" name="inputRateDaily" placeholder="Rate Daily" value="<?php echo $loan_info->interest_rate; ?>" readonly required>
                     <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
                 </div>
             </div>
             <div class="form-group">
                 <label for="inputDurationLoan">Duration Loan</label>
                 <div class="input-group">
-                    <input type="text" class="form-control" id="inputDurationLoan" name="inputDurationLoan" placeholder="Duration Loan" readonly required>
+                    <input type="text" class="form-control" id="inputDurationLoan" name="inputDurationLoan" placeholder="Duration Loan" value="<?php echo $loan_info->duration_loan." ".$loan_info->duration_loan_type; ?>" readonly required>
                     <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
                 </div>
             </div>
             <div class="form-group">
                 <label for="inputDateFirstPay">Date First Pay</label>
                 <div class="input-group">
-                    <input type="text" class="form-control" id="inputDateFirstPay" name="inputDateFirstPay" placeholder="Date First Pay" readonly required>
+                    <input type="text" class="form-control" id="inputDateFirstPay" name="inputDateFirstPay" placeholder="Date First Pay" value="<?php echo $loan_info->first_repayment; ?>" readonly required>
                     <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
                 </div>
             </div>
