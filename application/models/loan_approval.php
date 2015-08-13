@@ -60,7 +60,7 @@ class Loan_approval extends CI_Model {
             
         $this->db->from('loans');
         $this->db->join('customers', 'customers.id = loans.customer_id');
-        $this->db->join('spouse_informations', 'spouse_informations.customer_id = customers.id', 'left');
+        // $this->db->join('spouse_informations', 'spouse_informations.customer_id = customers.id', 'left');
         $this->db->join('product_types', 'product_types.id = loans.product_type_id');
         $this->db->where('loans.id',$loan_id);
         

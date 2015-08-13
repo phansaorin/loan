@@ -25,6 +25,7 @@
     <!-- My CSS -->
     <link href="<?php echo base_url();?>properties/css/customize.css" rel="stylesheet" />
     <!-- <link href="<?php echo base_url();?>properties/css/panel.css" rel="stylesheet" /> -->
+    <link href="<?php echo base_url();?>assets/css/customize.css" rel="stylesheet" />
     <!-- Core Scripts - Include with every page -->
     <!--<script src="<?php echo base_url();?>assets/plugins/jquery-1.10.2.js"></script>-->
     <script src="<?php echo base_url();?>assets/js/jquery.2.1.1.min.js"></script>
