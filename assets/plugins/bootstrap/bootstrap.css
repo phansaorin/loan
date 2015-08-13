@@ -4963,7 +4963,7 @@ a.list-group-item-danger.active:focus {
 }
 .panel-default {
   border-color: #ddd;
-  margin-top: -24px;
+  /*margin-top: -24px;*/
 }
 .panel-default > .panel-heading {
   color: #333;

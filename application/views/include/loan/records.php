@@ -31,7 +31,7 @@
     <script src="<?php echo base_url();?>assets/js/dashboard-demo.js"></script>
    
    </head>
-<?php echo $controller_name; ?>
+<?php //echo $controller_name; ?>
 <body>
       <!--  wrapper -->
        <div id="wrapper">
@@ -62,8 +62,8 @@
                     <!-- Advanced Tables -->
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                          <div class="sumite"><input type="submit" class="btn btn-primary" value="Add New Loan"></div>
-                          <?php echo anchor('user/adds','Add New Loan');?>
+                          <div class="sumite"></div>
+                          <?php echo anchor('loan/addLoan','Add New Loan','class="btn btn-primary"');?>
                           <?php //echo form_submit(array('id'=>'username','name'=>'username','class'=>'form-control','placeholder'=>'E-mail',)); ?>
                         </div>
                         <div class="panel-body">
@@ -81,22 +81,22 @@
                                     <tbody>
                                         <?php 
                                         // var_dump($open_loan);
-                                        foreach ($open_loan as $value) {
-                                            $cus_id = $value->id;
-                                            $custer_fname = $value->first_name_english;
-                                            $custer_lname = $value->last_name_english;
-                                            $phone = $value->home_number;
-                                            $address = $value->province;
+                                        // foreach ($open_loan as $value) {
+                                        //     $cus_id = $value->id;
+                                        //     $custer_fname = $value->first_name_english;
+                                        //     $custer_lname = $value->last_name_english;
+                                        //     $phone = $value->home_number;
+                                        //     $address = $value->province;
                                             // echo $custer_name;
                                         ?>
-                                        <tr class="odd gradeX">
-                                            <td><?php echo $cus_id; ?></td>
-                                            <td><?php echo $custer_fname.''.$custer_lname;?></td>
-                                            <td class="center"><?php echo $phone;?></td>
-                                            <td class="center"><?php echo $address;?></td>
+                                        <!-- <tr class="odd gradeX">
+                                            <td><?php //echo $cus_id; ?></td>
+                                            <td><?php //echo $custer_fname.''.$custer_lname;?></td>
+                                            <td class="center"><?php //echo $phone;?></td>
+                                            <td class="center"><?php //echo $address;?></td>
                                             <td></td>
-                                        </tr>
-                                        <?php }?>
+                                        </tr> -->
+                                        <?php //}?>
                                        
                                     </tbody>
                                 </table>
@@ -104,7 +104,7 @@
                             
                         </div>
                     </div>
-                    <!--End Advanced Tables -->
+                    <!--End Advanced Tables
                
         </div>
         <!-- end page-wrapper -->

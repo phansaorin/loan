@@ -18,6 +18,30 @@ class Mod_Loan extends CI_Model {
             // $this->db->from('blogs');
             return $query->result();
         }
+
+        function exists($loan_id) {
+            $query = $this->db
+                ->where('id',$loan_id)
+                ->get('loans');
+            // return $query->num_rows();
+            if ($query->num_rows() == 1) {
+                return true;
+            }
+            return false;
+        }
+
+        public function save(&$data, $loan_id=false){
+            $success = false;
+            $this->db->trans_start();   // Start Transaction
+            if (!$loan_id || $this->exists($loan_id)) {
+               $success = $this->db->insert('loans', $data);
+               $data['id'] = $this->db->insert_id();
+            } else {
+                $success = $this->db->where('id',$loan_id)->update("loans", $data);
+            }
+            $this->db->trans_complete();
+            return $success;
+        }
        
 }
 

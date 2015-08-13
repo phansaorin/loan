@@ -344,3 +344,21 @@ table.dataTable thead .sorting:after {
     text-align: center;
     /*padding: 35px;*/
 }
+.panel-heading {
+    height: 42px;
+}
+.btn_submit{
+    float: right;
+}
+.header_title{
+    height: 30px;
+}
+h1.title-header{
+    font-size: 22px;
+    margin-top: -9px;
+    color: #017C62;
+    position: absolute;
+}
+.note_start{
+    color:red;
+}
