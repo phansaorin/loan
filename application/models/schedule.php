@@ -5,7 +5,7 @@ if (!defined('BASEPATH'))
 
 class Schedule extends CI_Model {
 
-	function get_info($loan_id) {
+	/*function get_info($loan_id) {
 		$this->db->from('loans');	
 		$this->db->join('customers', 'customers.id = loans.customer_id');
 		$this->db->join('product_types', 'product_types.id = loans.product_type_id');
@@ -32,7 +32,7 @@ class Schedule extends CI_Model {
 			
 			return $loan_obj;
 		}
-	}
+	}*/
 
 	/*
 	Gets information about a customer as an array.
