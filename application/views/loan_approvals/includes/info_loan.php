@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-12">
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <h3 class="panel-title">Customer Information</h3>
@@ -21,9 +21,9 @@
                                     <li><a href="#email">E-mail</a></li>
                                     <li><a href="#www">Web</a></li>
                                 </ul> -->
-                                <input type="hidden" class="input-group-select-val" name="contacts['type'][]" value="phone">
+                                <!-- <input type="hidden" class="input-group-select-val" name="contacts['type'][]" value="phone"> -->
                             </div>
-                            <input type="text" name="contacts['value'][]" class="form-control">
+                            <input type="text" name="searches" class="form-control" value="<?php echo $loan_info->loan_account; ?>">
                             <span class="input-group-btn">
                                 <button type="button" class="btn btn-success btn-add">Search</button>
                             </span>
@@ -33,65 +33,88 @@
             </div>
 
         </div>
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h3 class="panel-title">Principle Owner Information</h3>
-                <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
+    </div>
+    <?php if (count($data_payments) > 0) { ?>
+    <div class="col-md-12 col-lg-12">
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Principle Owner Information</h3>
+                    <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
+                </div>
+                <div class="panel-body">
+                    <table>
+                        <tr>
+                            <td>CID</td>
+                            <td><?php echo $CID = $loan_info->CID != "" ? $loan_info->CID : nbs(2); ?></td>
+                        </tr>
+                        <tr>
+                            <td>Customer Name</td>
+                            <td><?php echo $loan_info->first_name_english.' '.$loan_info->last_name_english; ?></td>
+                        </tr>
+                        <tr>
+                            <td>Date Of Birth</td>
+                            <td><?php echo date('Y-m-d', strtotime($loan_info->date_of_birth)); ?></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                    <!-- <div class="form-group">
+                        <div class="col-md-5">CID</div>
+                        <div class="col-md-7"><?php echo $CID = $loan_info->CID != "" ? $loan_info->CID : nbs(2); ?></div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-5">Customer Name</div>
+                        <div class="col-md-7"><?php echo $loan_info->first_name_english.' '.$loan_info->last_name_english; ?></div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-5">Date Of Birth</div>
+                        <div class="col-md-7"><?php echo date('Y-m-d', strtotime($loan_info->date_of_birth)); ?></div>
+                    </div> -->
+                    <div class="form-group">
+                        <div class="col-md-5">Gender/Married</div>
+                        <div class="col-md-7"><?php echo $loan_info->gender.'/'.$loan_info->marrital_status; ?></div>
+                    </div>
+                    <div class="form-group">
+                    <?php 
+                    $address = $loan_info->khan_district.', '.$loan_info->sangkat_commune.', '.$loan_info->village.', '.$loan_info->province;
+                    ?>
+                        <div class="col-md-5">Address</div>
+                        <div class="col-md-7"><?php echo $address; ?></div>
+                    </div>
+                </div>
             </div>
-            <div class="panel-body">
-                <div class="form-group">
-                    <div class="col-md-5">CID</div>
-                    <div class="col-md-7">000001</div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-5">Customer Name</div>
-                    <div class="col-md-7">Chhingchhing HEM</div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-5">Date Of Birth</div>
-                    <div class="col-md-7">01-05-1980</div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-5">Gender/Married</div>
-                    <div class="col-md-7">Female/Single</div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-5">Address</div>
-                    <div class="col-md-7">17, 604, Toul kork, Phnom Penh</div>
-                </div>
-            </div>
-
         </div>
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h3 class="panel-title">Product Owner Information</h3>
-                <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Product Owner Information</h3>
+                    <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <div class="col-md-5">Product Type</div>
+                        <div class="col-md-7"><?php echo $loan_info->product_type_title; ?></div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-5">Currency</div>
+                        <div class="col-md-7"><?php echo $loan_info->currency; ?></div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-5">Account Status</div>
+                        <div class="col-md-7"><?php echo $loan_info->account_status; ?></div>
+                    </div>
+                </div>
             </div>
-            <div class="panel-body">
-                <div class="form-group">
-                    <div class="col-md-5">Product Type</div>
-                    <div class="col-md-7">100000 Riel - 200000 Riel</div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-5">Currency</div>
-                    <div class="col-md-7">USD</div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-5">Account Status</div>
-                    <div class="col-md-7">Pending</div>
-                </div>
-            </div>
-
         </div>
     </div>  
-    <div class="col-md-6">
-        <!-- <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h3 class="panel-title">Panel 1</h3>
-                <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
-            </div>
-            <div class="panel-body">Panel content</div>
-        </div> -->
+    <div class="col-md-12">
         <div class="panel with-nav-tabs panel-primary">
                 <div class="panel-heading">
                         <ul class="nav nav-tabs">
@@ -104,35 +127,35 @@
                         <div class="tab-pane fade in active" id="tabLoanSpace">
                             <div class="form-group">
                                 <div class="col-md-5">Loan Amount</div>
-                                <div class="col-md-7">4000000</div>
+                                <div class="col-md-7"><?php echo $loan_info->loan_amount; ?></div>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-5">Interest Rate</div>
-                                <div class="col-md-7">1.8</div>
+                                <div class="col-md-7"><?php echo $loan_info->interest_rate; ?></div>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-5">Penulty Rate</div>
-                                <div class="col-md-7">&nbsp;</div>
+                                <div class="col-md-7"><?php echo $loan_info->penalty_rate; ?></div>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-5">First Repayment</div>
-                                <div class="col-md-7">07-08-2015</div>
+                                <div class="col-md-7"><?php echo date('Y-m-d', strtotime($loan_info->first_repayment)); ?></div>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-5">Maturity Date</div>
-                                <div class="col-md-7">01-08-2015</div>
+                                <div class="col-md-7"><?php echo date('Y-m-d', strtotime($loan_info->maturity_date)); ?></div>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-5">Number of Installment</div>
-                                <div class="col-md-7">1</div>
+                                <div class="col-md-7"><?php echo $loan_info->renew_installment; ?></div>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-5">Repayment Freg</div>
-                                <div class="col-md-7">Weekly</div>
+                                <div class="col-md-7"><?php echo $loan_info->repayment_freg; ?></div>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-5">Installment Amount</div>
-                                <div class="col-md-7">37400</div>
+                                <div class="col-md-7"><?php echo $loan_info->installment_amount; ?></div>
                             </div>
                         </div>
                         <div class="tab-pane fade" id="tabRepayment">
@@ -191,7 +214,8 @@
                     </div>
                 </div>
             </div>
-    </div>   
+    </div>
+    <?php } ?>  
 </div>
 <div class="row">
     <div class="form-group pull-right">
