@@ -140,5 +140,16 @@ class Loan_approval extends CI_Model {
         $success = false;
         return $this->db->where('id', $loan_id)->update('loans', $data);
     }
+
+
+    // Get all list record of loan
+    function get_all($limit=10000, $offset=0,$col='maturity_date',$order='desc')
+    {
+        $query = $this->db->select('*')
+            ->order_by($col, $order)
+            ->get('loans', $limit, $offset);
+
+        return $query;
+    }
        
 }

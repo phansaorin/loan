@@ -65,4 +65,14 @@ class Loan_approvals extends MAIN_Controller {
 		}
 	}
 
+
+	// List record of loan
+	function list_loan() {
+		$data['controller_name'] = "loan_approvals";
+		$data['lists'] = $this->Loan_approval->get_all();
+		// var_dump($data['lists']); die();
+
+		$this->load->view('loan_approvals/list_loan', $data);
+	}
+
 }
