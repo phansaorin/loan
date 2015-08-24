@@ -261,9 +261,10 @@
 <div class="row">
     <div class="form-group pull-right">
         <div class="col-md-12 col-xs-10"> <!-- col-xs-offset-2: for to left-->
-            <button type="submit" class="btn btn-danger" disabled="disabled">Disapprove</button>
-            <button type="submit" class="btn btn-primary">Approve</button>
-            <button type="submit" class="btn btn-default">Exit</button>
+            <input type="hidden" name="loan_id" value="<?php echo $loan_id; ?>" />
+            <button class="btn btn-danger btnDisapprove" <?php echo $disabled = strtolower($loan_info->account_status) == 'pending' ? 'disabled' : ""; ?>>Disapprove</button>
+            <button class="btn btn-primary btnApprove">Approve</button>
+            <button class="btn btn-default btnExit">Exit</button>
         </div>
     </div>
 </div>

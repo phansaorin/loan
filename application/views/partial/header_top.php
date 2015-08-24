@@ -30,14 +30,15 @@
     <!--<script src="<?php echo base_url();?>assets/plugins/jquery-1.10.2.js"></script>-->
     <script src="<?php echo base_url();?>assets/js/jquery.2.1.1.min.js"></script>
     <script src="<?php echo base_url();?>assets/plugins/bootstrap/bootstrap.min.js"></script>
-    <script src="<?php echo base_url();?>assets/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <!-- <script src="<?php echo base_url();?>assets/plugins/metisMenu/jquery.metisMenu.js"></script>
     <script src="<?php echo base_url();?>assets/plugins/pace/pace.js"></script>
     <script src="<?php echo base_url();?>assets/js/siminta.js"></script>
-    <script src="<?php echo base_url();?>assets/js/flot-demo.js"></script>
+    <script src="<?php echo base_url();?>assets/js/flot-demo.js"></script> -->
     <!-- Page-Level Plugin Scripts-->
-    <script src="<?php echo base_url();?>assets/js/morris-demo.js"></script>
-    <script src="<?php echo base_url();?>assets/js/dashboard-demo.js"></script>
+    <!-- <script src="<?php echo base_url();?>assets/js/morris-demo.js"></script>
+    <script src="<?php echo base_url();?>assets/js/dashboard-demo.js"></script> -->
     <script src="<?php echo base_url();?>assets/js/jquery-ui.custom.min.js"></script>
+    <script src="<?php echo base_url();?>assets/js/notify.js"></script>
    
    <script type="text/javascript">
    var BASE_URL = '<?php echo base_url(); ?>'

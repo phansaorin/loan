@@ -28,7 +28,7 @@ class Loan_approval extends CI_Model {
     function autocomplete($term) {
         $data = $this->db->from('loans')
             ->like('loan_account', $term)
-            // ->where('UPPER(account_status)', strtoupper('pending'))
+            ->where('UPPER(account_status)', strtoupper('pending'))
             ->get();
 
         return $data;
@@ -62,6 +62,7 @@ class Loan_approval extends CI_Model {
         $this->db->join('customers', 'customers.id = loans.customer_id');
         // $this->db->join('spouse_informations', 'spouse_informations.customer_id = customers.id', 'left');
         $this->db->join('product_types', 'product_types.id = loans.product_type_id');
+        $this->db->where('UPPER(account_status)', strtoupper('pending'));
         $this->db->where('loans.id',$loan_id);
         
         $query = $this->db->get();
@@ -132,6 +133,12 @@ class Loan_approval extends CI_Model {
 
             return $customer_obj;
         }
+    }
+
+    // Dis or Approve loan
+    function dis_approve_loan(&$data, $loan_id) {
+        $success = false;
+        return $this->db->where('id', $loan_id)->update('loans', $data);
     }
        
 }
