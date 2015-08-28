@@ -22,11 +22,25 @@ ob_start();
 $content = <<<EOD
 <div class="header">
 	<div class="pull-left logo col-3 border " style="width: 20px;">
-		<h1>Welcome to <a href="http://www.tcpdf.org" style="text-decoration:none;background-color:#CC0000;color:black;">&nbsp;<span style="color:black;">TC</span><span style="color:white;">PDF</span>&nbsp;</a>!</h1>
-	</div>
-	<div class="pull-right border">
-	HI
-	</div>
+      <div>
+        <table cellspacing="0" cellpadding="1" border="1">
+            <tr>
+                <td rowspan="3">Logo</td>
+                <td></td>
+                <td>Form Number:</td>
+            </tr>
+            <tr>
+              <td rowspan="2"></td>
+              <td>LDV No:</td>
+            </tr>
+            <tr>
+               <td>Loan Account:</td>
+            </tr>
+
+        </table>
+  </div>
+  <center><h3 style="text-align:center;">LOAN DISBURSEMENT VOUCHE</h3></center>
+</div>
 	<div class="clearfix"></div>
 </div>
 
