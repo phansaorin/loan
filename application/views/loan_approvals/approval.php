@@ -89,6 +89,7 @@
   autoCompleted();
 
   function autoCompleted() {
+    // alert("hi")
     $('input[name="searches"]').autocomplete({
       minLength: 1,
       source: function(req, response){
