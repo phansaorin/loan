@@ -147,9 +147,18 @@ class Loan_approval extends CI_Model {
     {
         $query = $this->db->select('*')
             ->order_by($col, $order)
+            ->where('deleted', 0)
             ->get('loans', $limit, $offset);
 
         return $query;
+    }
+
+    /*
+      Deletes a list of loans
+     */
+    function delete_list($id) {
+        $this->db->where_in('id', $id);            
+        return $this->db->update('loans', array('deleted' => 1));
     }
        
 }

@@ -70,9 +70,18 @@ class Loan_approvals extends MAIN_Controller {
 	function list_loan() {
 		$data['controller_name'] = "loan_approvals";
 		$data['lists'] = $this->Loan_approval->get_all();
-		// var_dump($data['lists']); die();
 
 		$this->load->view('loan_approvals/list_loan', $data);
 	}
+
+	// Delete loan by given id
+	function delete() {
+        $items_to_delete  = $this->input->post('ids');
+        if ($this->Loan_approval->delete_list($items_to_delete)) {
+            echo json_encode(array('success' => true, 'message' => 'Loan delete successfully!'));
+        } else {
+            echo json_encode(array('success' => false, 'message' => 'Loan can not be delete.'));
+        }
+    }
 
 }
