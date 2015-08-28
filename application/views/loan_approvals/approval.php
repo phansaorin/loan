@@ -56,6 +56,35 @@
     }
   })
 
+  /*$('body').on('click', 'button.btnExit', function(event) {
+    event.preventDefault()
+    $.post(BASE_URL+"loan_approvals/exit_loan", function(resp) {
+      console.log(resp)
+    }, 'json');
+  })*/
+  
+  // Approve loan account
+  $('body').on('click', 'button.btnApprove', function(event) {
+    event.preventDefault()
+    var loan_id = $(this).parent().find("input[name='loan_id']").val()
+    $.post(BASE_URL+"loan_approvals/approve_loan/"+loan_id, function(resp) {
+      console.log(resp)
+      $(this).parent().find('button.btnDisapprove').removeAttr("disabled")
+      $.notify(resp.message, resp.type)
+    }, 'json');
+  })
+
+  // Disapprove loan account
+  $('body').on('click', 'button.btnDisapprove', function(event) {
+    event.preventDefault()
+    var loan_id = $(this).parent().find("input[name='loan_id']").val()
+    $.post(BASE_URL+"loan_approvals/disapprove_loan/"+loan_id, function(resp) {
+      console.log(resp)
+      $(this).parent().find('button.btnDisapprove').attr("disabled")
+      $.notify(resp.message, resp.type)
+    }, 'json');
+  })
+
   // Autocomplete
   autoCompleted();
 
