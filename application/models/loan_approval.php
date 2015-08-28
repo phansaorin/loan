@@ -28,23 +28,19 @@ class Loan_approval extends CI_Model {
     function autocomplete($term) {
         $data = $this->db->from('loans')
             ->like('loan_account', $term)
-            // ->where('UPPER(account_status)', strtoupper('pending'))
+            ->where('UPPER(account_status)', strtoupper('pending'))
+            ->where('deleted', 0)
             ->get();
 
         return $data;
     }
 
-    /*function get_loan_info($loan_id=-1) {
-
-    } */
-    function get_info($loan_id)
+    function get_info($loan_id, $is_pending=false)
     {
-        // var_dump($loan_id); die();
         //If we are NOT an int return empty item
         if (!is_numeric($loan_id))
         {
             //Get empty base parent object, as $meeting_id is NOT an item
-            // $loan_obj = new stdClass();
             $loan_obj = $this->get_customer_info(-1);
 
             //Get all the fields from loans table
@@ -60,9 +56,13 @@ class Loan_approval extends CI_Model {
             
         $this->db->from('loans');
         $this->db->join('customers', 'customers.id = loans.customer_id');
-        $this->db->join('spouse_informations', 'spouse_informations.customer_id = customers.id', 'left');
+        // $this->db->join('spouse_informations', 'spouse_informations.customer_id = customers.id', 'left');
         $this->db->join('product_types', 'product_types.id = loans.product_type_id');
+        if ($is_pending) {
+            $this->db->where('UPPER(account_status)', strtoupper('pending'));
+        }
         $this->db->where('loans.id',$loan_id);
+        $this->db->where('loans.deleted',0);
         
         $query = $this->db->get();
 
@@ -73,7 +73,6 @@ class Loan_approval extends CI_Model {
         else
         {
             //Get empty base parent object, as $meeting_id is NOT an item
-            // $loan_obj= new stdClass();
             $loan_obj = $this->get_customer_info(-1);
 
             //Get all the fields from loans table
@@ -132,6 +131,32 @@ class Loan_approval extends CI_Model {
 
             return $customer_obj;
         }
+    }
+
+    // Dis or Approve loan
+    function dis_approve_loan(&$data, $loan_id) {
+        $success = false;
+        return $this->db->where('id', $loan_id)->update('loans', $data);
+    }
+
+
+    // Get all list record of loan
+    function get_all($limit=10000, $offset=0,$col='maturity_date',$order='desc')
+    {
+        $query = $this->db->select('*')
+            ->order_by($col, $order)
+            ->where('deleted', 0)
+            ->get('loans', $limit, $offset);
+
+        return $query;
+    }
+
+    /*
+      Deletes a list of loans
+     */
+    function delete_list($id) {
+        $this->db->where_in('id', $id);            
+        return $this->db->update('loans', array('deleted' => 1));
     }
        
 }

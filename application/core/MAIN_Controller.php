@@ -11,7 +11,10 @@ class MAIN_Controller extends CI_Controller {
     }
 
     function payment_schedule($loan_info) {
-      // var_dump($loan_info); die();
+      
+      if ($loan_info->CID == "") {
+        return array();
+      }
         $principle_loan = $loan_info->loan_amount;
         $rate = $loan_info->interest_rate;
         // $pay_capital = round($principle_loan/$rate, 2);

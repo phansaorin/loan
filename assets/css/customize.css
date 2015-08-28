@@ -1,0 +1,16 @@
+.cus-h3 {
+	line-height: 5px;
+}
+.nav > li > a {
+	padding-top: 8px;
+	padding-bottom: 8px;
+}
+table.list-order-num {
+	counter-reset: my-badass-counter;
+}
+
+table.list-order-num td:nth-child(1):before {
+	color: rgb(51, 122, 183);
+	content: counter(my-badass-counter);
+	counter-increment: my-badass-counter;
+}
