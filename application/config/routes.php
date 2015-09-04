@@ -41,6 +41,8 @@
 $route['default_controller'] = "login";
 $route['404_override'] = '';
 
+$route['reports/summary_loan'] = "reports/date_input_loan";
+
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
