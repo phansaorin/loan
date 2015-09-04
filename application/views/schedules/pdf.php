@@ -1,4 +1,5 @@
 <?php
+
 tcpdf();
 $obj_pdf = new TCPDF('P', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 $obj_pdf->SetCreator(PDF_CREATOR);
@@ -41,170 +42,89 @@ $content = <<<EOD
   </div>
   <center><h3 style="text-align:center;">LOAN DISBURSEMENT VOUCHE</h3></center>
 </div>
-	<div class="clearfix"></div>
+	<div class="clearfix">
+     <div border="1">
+        <table>
+          <tr>
+              <td>
+                  <table cellspacing="0" cellpadding="1">
+                    <tr>
+                        <td>Disbur.Location :</td>
+                        <td border="1" width="110" height="20">Phom Penh</td>
+                    </tr>
+                    <tr>
+                        <td>Contract NO :</td>
+                        <td border="1">...</td>
+                    </tr>
+                    <tr>
+                        <td>Disbursement Date :</td>
+                        <td border="1">29-08-2015</td>
+                    </tr>
+                    <tr>
+                        <td>Payer :</td>
+                        <td border="1">admin</td>
+                    </tr>
+                    <tr>
+                        <td>Signature :</td>
+                        <td border="1" height="80">admin</td>
+                    </tr>
+                    <tr>
+                        <td>LG Code :</td>
+                        <td border="1">1234567</td>
+                    </tr>
+                    <tr>
+                        <td>Amount receiverd :</td>
+                        <td border="1">400.000.000 USA ($)</td>
+                    </tr>
+                    <tr>
+                        <td>In Word :</td>
+                        <td border="1">....</td>
+                    </tr>
+                    
+                  </table>
+              </td>
+              <td>
+                  <table>
+                      <tr>
+                            <td>Payee :</td>
+                            <td border="1" width="110" height="10">....</td>
+                        </tr>
+                        <tr>
+                            <td>Gender :</td>
+                            <td border="1">Female</td>
+                        </tr>
+                        <tr>
+                            <td>Address :</td>
+                            <td border="1" width="110" height="100">Savy chum, reabrea</td>
+                        </tr>
+                        <tr>
+                            <td>Fingerprint :</td>
+                            <td border="1" height="80">.....</td>
+                        </tr>
+                  </table>
+              </td>
+          </tr>
+         
+        </table>
+     </div>
+     <div></div>
+       <div class="pull-left logo col-3 border " style="width: 20px;">
+          <table cellspacing="0" cellpadding="1" border="1">
+              <tr>
+                  <td>admn</td>
+                  <td>transure</td>
+                  <td>Branch manager</td>
+                  
+              </tr>
+              
+
+          </table>
+        <div>
 </div>
-
-<i>This is the first example of TCPDF library.</i>
-<p>This text is printed using the <i>writeHTMLCell()</i> method but you can also use: <i>Multicell(), writeHTML(), Write(), Cell() and Text()</i>.</p>
-<p>Please check the source code documentation and other examples for further information.</p>
-<p style="color:#CC0000;">TO IMPROVE AND EXPAND TCPDF I NEED YOUR SUPPORT, PLEASE <a href="http://sourceforge.net/donate/index.php?group_id=128076">MAKE A DONATION!</a></p>
-EOD;
-
-$content .= <<<EOD
-	<table class="table">
-		<thead>
-		<tr>
-			<th>Number</th>
-			<th>Name</th>
-			<th>Number</th>
-			<th>Name</th>
-			<th>Number</th>
-			<th>Name</th>
-		</tr>
-		</thead>
-		<tbody>
-		<tr>
-			<td>1</td>
-			<td>chhing</td>
-			<td>1</td>
-			<td>chhing</td>
-			<td>1</td>
-			<td>chhing</td>
-		</tr>
-		</tbody>
-	</table>
-EOD;
-
-$tbl = <<<EOD
-<table cellspacing="0" cellpadding="1" border="1">
-    <tr>
-        <td rowspan="3">COL 1 - ROW 1<br />COLSPAN 3</td>
-        <td>COL 2 - ROW 1</td>
-        <td>COL 3 - ROW 1</td>
-    </tr>
-    <tr>
-    	<td rowspan="2">COL 2 - ROW 2 - COLSPAN 2<br />text line<br />text line<br />text line<br />text line</td>
-    	<td>COL 3 - ROW 2</td>
-    </tr>
-    <tr>
-       <td>COL 3 - ROW 3</td>
-    </tr>
-
-</table>
-EOD;
-
-$tbl2 = <<<EOD
-<div>
-<table cellspacing="0" cellpadding="1" border="1">
-    <tr>
-        <td rowspan="3">COL 1 - ROW 1<br />COLSPAN 3<br />text line<br />text line<br />text line<br />text line<br />text line<br />text line</td>
-        <td>COL 2 - ROW 1</td>
-        <td>COL 3 - ROW 1</td>
-    </tr>
-    <tr>
-    	<td rowspan="2">COL 2 - ROW 2 - COLSPAN 2<br />text line<br />text line<br />text line<br />text line</td>
-    	 <td>COL 3 - ROW 2<br />text line<br />text line</td>
-    </tr>
-    <tr>
-       <td>COL 3 - ROW 3</td>
-    </tr>
-
-</table>
 </div>
 EOD;
 
-$tbl3 = <<<EOD
-<table border="1">
-<tr>
-<th rowspan="3">Left column</th>
-<th colspan="5">Heading Column Span 5</th>
-<th colspan="9">Heading Column Span 9</th>
-</tr>
-<tr>
-<th rowspan="2">Rowspan 2<br />This is some text that fills the table cell.</th>
-<th colspan="2">span 2</th>
-<th colspan="2">span 2</th>
-<th rowspan="2">2 rows</th>
-<th colspan="8">Colspan 8</th>
-</tr>
-<tr>
-<th>1a</th>
-<th>2a</th>
-<th>1b</th>
-<th>2b</th>
-<th>1</th>
-<th>2</th>
-<th>3</th>
-<th>4</th>
-<th>5</th>
-<th>6</th>
-<th>7</th>
-<th>8</th>
-</tr>
-</table>
-EOD;
-// $pdf->writeHTML($tbl, true, false, false, false, '');
 
-$tbl4 = <<<EOD
-<table border="1" cellpadding="2" cellspacing="2">
-<thead>
- <tr style="background-color:#FFFF00;color:#0000FF;">
-  <td width="30" align="center"><b>A</b></td>
-  <td width="140" align="center"><b>XXXX</b></td>
-  <td width="140" align="center"><b>XXXX</b></td>
-  <td width="80" align="center"> <b>XXXX</b></td>
-  <td width="80" align="center"><b>XXXX</b></td>
-  <td width="45" align="center"><b>XXXX</b></td>
- </tr>
- <tr style="background-color:#FF0000;color:#FFFF00;">
-  <td width="30" align="center"><b>B</b></td>
-  <td width="140" align="center"><b>XXXX</b></td>
-  <td width="140" align="center"><b>XXXX</b></td>
-  <td width="80" align="center"> <b>XXXX</b></td>
-  <td width="80" align="center"><b>XXXX</b></td>
-  <td width="45" align="center"><b>XXXX</b></td>
- </tr>
-</thead>
- <tr>
-  <td width="30" align="center">1.</td>
-  <td width="140" rowspan="6">XXXX<br />XXXX<br />XXXX<br />XXXX<br />XXXX<br />XXXX<br />XXXX<br />XXXX</td>
-  <td width="140">XXXX<br />XXXX</td>
-  <td width="80">XXXX<br />XXXX</td>
-  <td width="80">XXXX</td>
-  <td align="center" width="45">XXXX<br />XXXX</td>
- </tr>
- <tr>
-  <td width="30" align="center" rowspan="3">2.</td>
-  <td width="140" rowspan="3">XXXX<br />XXXX</td>
-  <td width="80">XXXX<br />XXXX</td>
-  <td width="80">XXXX<br />XXXX</td>
-  <td align="center" width="45">XXXX<br />XXXX</td>
- </tr>
- <tr>
-  <td width="80">XXXX<br />XXXX<br />XXXX<br />XXXX</td>
-  <td width="80">XXXX<br />XXXX</td>
-  <td align="center" width="45">XXXX<br />XXXX</td>
- </tr>
- <tr>
-  <td width="80" rowspan="2" >RRRRRR<br />XXXX<br />XXXX<br />XXXX<br />XXXX<br />XXXX<br />XXXX<br />XXXX</td>
-  <td width="80">XXXX<br />XXXX</td>
-  <td align="center" width="45">XXXX<br />XXXX</td>
- </tr>
- <tr>
-  <td width="30" align="center">3.</td>
-  <td width="140">XXXX1<br />XXXX</td>
-  <td width="80">XXXX<br />XXXX</td>
-  <td align="center" width="45">XXXX<br />XXXX</td>
- </tr>
- <tr>
-  <td width="30" align="center">4.</td>
-  <td width="140">XXXX<br />XXXX</td>
-  <td width="80">XXXX<br />XXXX</td>
-  <td width="80">XXXX<br />XXXX</td>
-  <td align="center" width="45">XXXX<br />XXXX</td>
- </tr>
-</table>
-EOD;
 
 // Style sheet
 $content .= <<<EOD
@@ -234,7 +154,7 @@ $content .= <<<EOD
 		width: 30px;
 		background-color: #eef;
 	}
-	.header, .border {
+	.header, .border {s
 		border: 1px solid #CCC;
 	}
 	</style>
@@ -243,8 +163,8 @@ EOD;
 
 ob_end_clean();
 $obj_pdf->writeHTML($content, true, false, true, false, '');
-$obj_pdf->writeHTML($tbl2, true, false, false, false, '');
-$obj_pdf->writeHTML($tbl3, true, false, false, false, '');
-$obj_pdf->writeHTML($tbl, true, false, false, false, '');
-$obj_pdf->writeHTML($tbl4, true, false, false, false, '');
+// $obj_pdf->writeHTML($buttom, true, false, false, false, '');
+// $obj_pdf->writeHTML($tbl3, true, false, false, false, '');
+// $obj_pdf->writeHTML($tbl, true, false, false, false, '');
+// $obj_pdf->writeHTML($tbl4, true, false, false, false, '');
 $obj_pdf->Output('output.pdf', 'I');

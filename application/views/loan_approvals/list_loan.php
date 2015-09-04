@@ -26,18 +26,26 @@
         <div class="row">
             <div class="col-lg-12 loan-contain">
               <div class="col-lg-12 filterable">
-                <table class="table list-order-num">
+                <table class="table table-striped table-bordered table-hover">
                   <thead>
                       <tr class="filters">
-                          <th><input type="text" class="form-control" placeholder="#" disabled></th>
+                          <th>NO</th>
+                         <th>Maturity Date</th>
+                          <th>Loan Account</th>
+                          <th>Duration</th>
+                          <th>Loan Amount</th>
+                          <th>First Repayment</th>
+                          <th>Rate</th>
+                          <th>Installment Amount</th> 
+                          <!-- <th><input type="text" class="form-control" placeholder="NO" disabled></th>
                           <th><input type="text" class="form-control" placeholder="Maturity Date" disabled></th>
                           <th><input type="text" class="form-control" placeholder="Loan Account" disabled></th>
-                          <!-- <th><input type="text" class="form-control" placeholder="Principle" disabled></th> -->
+                          <th><input type="text" class="form-control" placeholder="Principle" disabled></th>
                           <th><input type="text" class="form-control" placeholder="Duration" disabled></th>
                           <th><input type="text" class="form-control" placeholder="Loan Amount" disabled></th>
                           <th><input type="text" class="form-control" placeholder="First Repayment" disabled></th>
                           <th><input type="text" class="form-control" placeholder="Rate" disabled></th>
-                          <th><input type="text" class="form-control" placeholder="Installment Amount" disabled></th>
+                          <th><input type="text" class="form-control" placeholder="Installment Amount" disabled></th>  -->
                           <th>Action</th>
                       </tr>
                   </thead>
@@ -49,7 +57,7 @@
                        ?>
                           <tr data-id="<?php echo $rows->id; ?>">
                               <td>
-                                <?php echo form_hidden('ids[]', $rows->id); ?>
+                                <?php echo $rows->id;//form_hidden('ids[]', $rows->id); ?>
                               </td>
                               <td><?php echo date('Y-m-d', strtotime($rows->maturity_date)); ?></td>
                               <td><?php echo $rows->loan_account; ?></td>

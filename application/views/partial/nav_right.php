@@ -57,7 +57,7 @@
                     <a href="#"><i class="fa fa-user fa-fw"></i>Loan Management<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <?php echo anchor('loan/records', 'Records Loan'); ?>
+                            <?php echo anchor('loan_approvals/list_loan', 'Records Loan'); ?>
                         </li>
                         <li>
                             <?php echo anchor('loan/addLoan', 'Add Loan');//echo "<a href=''>Add Staffs</a>"; ?>

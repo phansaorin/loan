@@ -36,7 +36,7 @@ class Loan extends CI_Controller {
            $this->form_validation->set_rules('fir_payment', 'First Payment', 'required');
 
           if ($this->form_validation->run() == FALSE) {
-             // $this->load->view('include/loan/adds', $data);
+             $this->load->view('include/loan/adds', $data);
             echo json_encode(array("success"=>FALSE, 'message'=>'Please input all required fields'));
           } else {
             $data = array(
