@@ -13,11 +13,8 @@
     <!-- font-awesome-->
     <link href="<?php echo base_url();?>assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
     <link href="<?php echo base_url();?>assets/css/bootstrap-responsive.min.css" rel="stylesheet" />
-    <!-- <link href="<?php echo base_url();?>assets/css/bootstrap-responsive.css" rel="stylesheet" /> -->
-    <!-- <link href="<?php echo base_url();?>assets/css/bootstrap.css" rel="stylesheet" /> -->
     <link href="<?php echo base_url();?>assets/css/bootstrap.min.css" rel="stylesheet" />
     <link href="<?php echo base_url();?>assets/css/main-style.css" rel="stylesheet" />
-    <!-- <link href="<?php echo base_url();?>assets/css/font-awesome.css" rel="stylesheet" /> -->
     <link href="<?php echo base_url();?>assets/css/style.css" rel="stylesheet" />
     <link href="<?php echo base_url();?>assets/css/jquery-ui.css" rel="stylesheet" />
     <!-- <link href="<?php echo base_url();?>assets/css/jquery-ui.custom.min.css" rel="stylesheet" /> -->
@@ -30,10 +27,10 @@
     <!--<script src="<?php echo base_url();?>assets/plugins/jquery-1.10.2.js"></script>-->
     <script src="<?php echo base_url();?>assets/js/jquery.2.1.1.min.js"></script>
     <script src="<?php echo base_url();?>assets/plugins/bootstrap/bootstrap.min.js"></script>
-    <!-- <script src="<?php echo base_url();?>assets/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="<?php echo base_url();?>assets/plugins/metisMenu/jquery.metisMenu.js"></script>
     <script src="<?php echo base_url();?>assets/plugins/pace/pace.js"></script>
     <script src="<?php echo base_url();?>assets/js/siminta.js"></script>
-    <script src="<?php echo base_url();?>assets/js/flot-demo.js"></script> -->
+    <!-- <script src="<?php echo base_url();?>assets/js/flot-demo.js"></script> -->
     <!-- Page-Level Plugin Scripts-->
     <!-- <script src="<?php echo base_url();?>assets/js/morris-demo.js"></script>
     <script src="<?php echo base_url();?>assets/js/dashboard-demo.js"></script> -->

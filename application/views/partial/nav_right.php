@@ -54,16 +54,26 @@
                 <!-- End of Staff -->
 
                 <li>
-                    <a href="#"><i class="fa fa-user fa-fw"></i>Loan Management<span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-table fa-fw"></i>Loan Management<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <?php echo anchor('loan_approvals/list_loan', 'Records Loan'); ?>
+                            <?php echo anchor('loans', 'Records Loan'); ?>
                         </li>
                         <li>
                             <?php echo anchor('loan/addLoan', 'Add Loan');//echo "<a href=''>Add Staffs</a>"; ?>
                         </li>
                         <li>
                             <?php echo anchor('loan/disturbment_voucher', 'Disturbment VoucherAdd');//echo "<a href=''>Add Staffs</a>"; ?>
+                        </li>
+                    </ul>
+                    <!-- second-level-items -->
+                </li>
+
+                <li>
+                    <a href="#"><i class="fa fa-file fa-fw"></i>Report Management<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <?php echo anchor('reports/summary_loan', 'Reports'); ?>
                         </li>
                     </ul>
                     <!-- second-level-items -->

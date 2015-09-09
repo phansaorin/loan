@@ -24,9 +24,6 @@
              <!-- end  page header -->
         </div>
 
-
-
-
         <div class="col-md-offset-5">                   
             <div>
                 <?php foreach ($summary_data as $name => $value) {
@@ -34,7 +31,7 @@
                         <!-- small box -->
                         <div class="infobox-blue infobox-dark col-md-3 text-center">
                             <div class="inner">
-                                <h5><?php echo lang('reports_' . $name); ?></h5>
+                                <h5><?php echo REPORTS_LOAN_COUNT; ?></h5>
                                 <h3>
                                     <strong><?php echo $value; ?></strong>
                                 </h3>

@@ -173,7 +173,7 @@
 <script type="text/javascript">
   $(document).ready(function() {
     $('body').on('click', 'button.btnExit', function() {
-      window.location.href = BASE_URL+"loan_approvals/list_loan"
+      window.location.href = BASE_URL+"loans"
     })
   })
 </script>

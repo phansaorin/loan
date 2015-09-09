@@ -33,24 +33,9 @@ class Reports extends MAIN_Controller {
 		$model->setParams(array('start_date'=>$start_date, 'end_date'=>$end_date));
 
 		$this->Report->create_loans_temp_table(array('start_date'=>$start_date, 'end_date'=>$end_date));
-	
-		$data = array(
-			"title" =>'Loan Report',
-			"subtitle" => date("d-m-Y", strtotime($start_date)) .'-'.date("d-m-Y", strtotime($end_date)),
-			"details_data" => $model->getData(),
-			"overall_summary_data" => $model->getSummaryData(),
-		);
-		// var_dump($data); die();
 
-
-
-		// $this->check_action_permission('view_proposal');
         $start_date = rawurldecode($start_date);
         $end_date   = rawurldecode($end_date);
-        // $status   = rawurldecode($status);
-
-        // $this->load->model('reports/Summary_proposals');
-        // $model = $this->Summary_proposals;
 
         $config                = array();
         $config['base_url']    = site_url("reports/summary_loan/" . rawurlencode($start_date) . '/' . rawurlencode($end_date));
@@ -61,25 +46,14 @@ class Reports extends MAIN_Controller {
         $tabular_data = array();
         $report_data  = $model->getData();
 
-/*Maturity Date
-Loan Account
-Duration
-Loan Amount
-First Repayment
-Rate
-Installment Amount
-Customer
-Phone Number
-Gender*/
-
         foreach ($report_data as $row) {
             $tabular_data[] = array(
-                array('data'  => $row['maturity_date'], 'align' => 'left'),
+                array('data'  => date('D, d-m-Y', strtotime($row['maturity_date'])), 'align' => 'left'),
                 array('data'  => $row['loan_account'], 'align' => 'left'),
                 array('data'  => $row['duration_loan'].' '.$row['duration_loan_type'], 'align' => 'left'),
                 array('data'  => $row['product_type_title'], 'align' => 'left'),
                 array('data'  => $row['loan_amount'], 'align' => 'left'),
-                array('data'  => date('D, d/m/Y', strtotime($row['first_repayment'])), 'align' => 'left'),
+                array('data'  => date('D, d-m-Y', strtotime($row['first_repayment'])), 'align' => 'left'),
                 array('data'  => $row['interest_rate'], 'align' => 'left'),
                 array('data'  => $row['installment_amount'], 'align' => 'left'),
                 array('data'  => $row['cln_eng'].' '.$row['cfn_eng'], 'align' => 'left'),

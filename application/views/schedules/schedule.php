@@ -47,11 +47,25 @@
 
             </div>
             <!-- end wrapper -->
-<?php //echo anchor('main/login_form','Login');?>
+            <div class="row">
+                <div class="form-group pull-right">
+                    <div class="col-md-12 col-xs-10"> <!-- col-xs-offset-2: for to left-->
+                        <button class="btn btn-default btnExit">Exit</button>
+                    </div>
+                </div>
+            </div>
           
        </div>
         <!-- end wrapper -->
    </div>
 </body>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('body').on('click', 'button.btnExit', function() {
+      window.location.href = BASE_URL+"loans"
+    })
+  })
+</script>
 
 </html>

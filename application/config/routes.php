@@ -38,7 +38,7 @@
 |
 */
 
-$route['default_controller'] = "login";
+$route['default_controller'] = "loans";
 $route['404_override'] = '';
 
 $route['reports/summary_loan'] = "reports/date_input_loan";
