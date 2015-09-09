@@ -1,6 +1,19 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Loan_approvals extends MAIN_Controller {
+class Loans extends MAIN_Controller {
+
+	// List record of loan
+	function index() {
+		$data['controller_name'] = strtolower(get_class());
+		$data['lists'] = $this->Loan_approval->get_all();
+
+		$this->load->view('loans/list_loan', $data);
+	}
+
+	// List record of loan
+	function list_loan() {
+		$this->index();
+	}
 
 	public function approval($loan_id=-1) {
 		$is_pending = true;
@@ -15,7 +28,7 @@ class Loan_approvals extends MAIN_Controller {
     	}
 		$data['data_payments'] = $data_payments;
 
-    	$this->load->view("loan_approvals/approval", $data);
+    	$this->load->view("loans/approval", $data);
   	}
 
   	function autocomplete() {
@@ -56,14 +69,6 @@ class Loan_approvals extends MAIN_Controller {
 		}
 	}
 
-	// List record of loan
-	function list_loan() {
-		$data['controller_name'] = "loan_approvals";
-		$data['lists'] = $this->Loan_approval->get_all();
-
-		$this->load->view('loan_approvals/list_loan', $data);
-	}
-
 	// Delete loan by given id
 	function delete() {
         $items_to_delete  = $this->input->post('ids');
@@ -86,9 +91,39 @@ class Loan_approvals extends MAIN_Controller {
     	}
 		$data['data_payments'] = $data_payments;
 
-    	// $this->load->view("loan_approvals/approval", $data);
+    	$this->load->view('loans/view_loan', $data);
+    }
 
-    	$this->load->view('loan_approvals/view_loan', $data);
-    } 
+    public function schedule($loan_id=-1)
+  {
+    $data['controller_name'] = strtolower(get_class());
+    $data['loan_info'] = $this->Loan_approval->get_info($loan_id);
+    $data_payments = parent::payment_schedule($data['loan_info']);
+    $data['data_payments'] = $data_payments;
+
+    $this->load->view("schedules/schedule", $data);
+  }
+
+  	function get_holidays() {
+	  	$start_date = '2015-01-01';
+	  	$end_date = '2015-01-10';
+
+	  	$holidays = $this->businessdays->getHolidayDays($start_date,$end_date);
+
+	  	$year = date("Y");
+	  	$holiday = $this->businessdays->get_holiday($year, 05, 1, 4);
+  	}
+
+  	function pdf()
+  	{
+      	$this->load->helper('pdf_helper');
+      	$data['title'] = 'Title';
+      	/*
+          ---- ---- ---- ----
+          your code here
+          ---- ---- ---- ----
+      	*/
+      	$this->load->view('schedules/pdf', $data);
+  	}
 
 }

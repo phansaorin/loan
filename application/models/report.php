@@ -30,20 +30,6 @@ class Report extends CI_Model {
 		elseif (isset($params['start_date']) && isset($params['end_date']))
 		{
 			$where = 'WHERE maturity_date BETWEEN '.$this->db->escape($params['start_date']).' and '.$this->db->escape($params['end_date']);
-		
-			//Added for detailed_suspended_report, we don't need this for other reports as we are always going to have start + end date
-			/*if (isset($params['force_suspended']) && $params['force_suspended'])
-			{
-				$where .=' and suspended != 0';				
-			}
-			elseif ($this->config->item('hide_layaways_sales_in_reports'))
-			{
-				$where .=' and suspended = 0';
-			}
-			else
-			{
-				$where .=' and suspended != 2';					
-			}*/
 		}
 		else
 		{
@@ -68,7 +54,7 @@ class Report extends CI_Model {
 		$spouse_informations = $this->db->dbprefix('spouse_informations');
 		$product_types = $this->db->dbprefix('product_types');
 
-		return $this->db->query("CREATE TEMPORARY TABLE ".$this->db->dbprefix('loans_temp')."
+		return $this->db->query("CREATE TEMPORARY TABLE IF NOT EXISTS ".$this->db->dbprefix('loans_temp')."
 		(SELECT ".$loans.".id as ID, ".$loans.".maturity_date, ".$loans.".loan_account, ".$loans.".account_status, ".$loans.".duration_loan, ".$loans.".duration_loan_type, ".$loans.".customer_id, ".$loans.".product_type_id, ".$loans.".product_type_title, ".$loans.".repayment_type, ".$loans.".ownership_type, ".$loans.".currency, ".$loans.".repayment_freg, ".$loans.".loan_amount, ".$loans.".loan_amount_in_word, ".$loans.".first_repayment, ".$loans.".renew_installment, ".$loans.".interest_rate, ".$loans.".penalty_rate, ".$loans.".installment_amount, ".$loans.".deleted, 
 			".$product_types.".id as ptID, 
 			".$customers.".id as customerID, ".$customers.".first_name_english as cfn_eng, ".$customers.".last_name_english as cln_eng, ".$customers.".nick_name_english as cnn_eng, ".$customers.".first_name_khmer as cfn_kh, ".$customers.".last_name_khmer as cln_kh, ".$customers.".nick_name_khmer as cnn_kh, ".$customers.".gender, ".$customers.".identity_card_passport as cidentity_card, ".$customers.".job as cjob, ".$customers.".income_per_month as cincome, ".$customers.".phone_number as cphone_number, ".$customers.".province, ".$customers.".khan_district, ".$customers.".sangkat_commune, ".$customers.".village, ".$customers.".home_number, ".$customers.".email, ".$customers.".date_of_birth as dob, ".$customers.".marrital_status, ".$customers.".account_type, 

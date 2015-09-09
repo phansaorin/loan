@@ -22,6 +22,12 @@
                 <h1 class="page-header">Loan List</h1>
             </div>
              <!-- end  page header -->
+            <div class="col-xs-12">
+              <div class="form-group pull-right">
+                <?php echo anchor('loan/addLoan', 'New', 'class="btn btn-xs btn-success"'); ?>
+                <?php echo anchor('loans/approval', 'To Approve', 'class="btn btn-xs btn-primary"'); ?>
+              </div>
+            </div>
         </div>      
         <div class="row">
             <div class="col-lg-12 loan-contain">
@@ -29,24 +35,15 @@
                 <table class="table table-striped table-bordered table-hover">
                   <thead>
                       <tr class="filters">
-                          <th>NO</th>
-                         <th>Maturity Date</th>
-                          <th>Loan Account</th>
-                          <th>Duration</th>
-                          <th>Loan Amount</th>
-                          <th>First Repayment</th>
-                          <th>Rate</th>
-                          <th>Installment Amount</th> 
-                          <!-- <th><input type="text" class="form-control" placeholder="NO" disabled></th>
-                          <th><input type="text" class="form-control" placeholder="Maturity Date" disabled></th>
-                          <th><input type="text" class="form-control" placeholder="Loan Account" disabled></th>
-                          <th><input type="text" class="form-control" placeholder="Principle" disabled></th>
-                          <th><input type="text" class="form-control" placeholder="Duration" disabled></th>
-                          <th><input type="text" class="form-control" placeholder="Loan Amount" disabled></th>
-                          <th><input type="text" class="form-control" placeholder="First Repayment" disabled></th>
-                          <th><input type="text" class="form-control" placeholder="Rate" disabled></th>
-                          <th><input type="text" class="form-control" placeholder="Installment Amount" disabled></th>  -->
-                          <th>Action</th>
+                        <th>NO</th>
+                        <th>Maturity Date</th>
+                        <th>Loan Account</th>
+                        <th>Duration</th>
+                        <th>Loan Amount</th>
+                        <th>First Repayment</th>
+                        <th>Rate</th>
+                        <th>Installment Amount</th> 
+                        <th>Action</th>
                       </tr>
                   </thead>
                   <tbody>
@@ -67,6 +64,12 @@
                               <td><?php echo round($rows->interest_rate, 2); ?></td>
                               <td><?php echo $rows->installment_amount; ?></td>
                               <td>
+                                <span class="schedule btn btn-xs btn-warning">
+                                  <i class="ace-icon fa fa-calendar bigger-120"></i>
+                                </span>
+                                <span class="view btn btn-xs btn-success">
+                                  <i class="ace-icon fa fa-search bigger-120"></i>
+                                </span>
                                 <span class="edit btn btn-xs btn-info"> 
                                   <i class="ace-icon fa fa-pencil bigger-120"></i> 
                                </span>
@@ -95,14 +98,14 @@
 
 <script type="text/javascript">
   $(document).ready(function() {
-    var t, id;
+    var t, id, url;
     $('body').on('click', 'span.delete', function(event) {
       t = $(this)
       id = t.parents("tr").data('id')
       t.parents("tr").css({'color':'rgb(237, 122, 122)'})
       if (confirm("Are you sure you want to delete this row?")) {
         $.ajax({
-          url: BASE_URL+"loan_approvals/delete",
+          url: BASE_URL+"loans/delete",
           type: "POST",
           dataType: "JSON",
           data: {ids:id},
@@ -122,6 +125,16 @@
       } else {
         t.parents("tr").removeAttr('style')
       }
+    })
+    $('body').on('click', 'span.view', function() {
+      t = $(this)
+      id = t.parents("tr").data('id')
+      window.location.href = BASE_URL+"loans/view_loan/"+id;
+    })
+    $('body').on('click', 'span.schedule', function() {
+      t = $(this)
+      id = t.parents("tr").data('id')
+      window.location.href = BASE_URL+"loans/schedule/"+id;
     })
   })
 </script>

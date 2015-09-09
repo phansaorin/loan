@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 10, 2015 at 06:05 PM
+-- Generation Time: Sep 04, 2015 at 06:23 PM
 -- Server version: 5.6.20
 -- PHP Version: 5.5.15
 
@@ -28,6 +28,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `customers` (
 `id` int(11) NOT NULL,
+  `CID` varchar(45) DEFAULT NULL COMMENT 'Group/individual',
   `first_name_english` varchar(150) DEFAULT NULL,
   `last_name_english` varchar(150) DEFAULT NULL,
   `nick_name_english` varchar(150) DEFAULT NULL,
@@ -54,9 +55,9 @@ CREATE TABLE IF NOT EXISTS `customers` (
 -- Dumping data for table `customers`
 --
 
-INSERT INTO `customers` (`id`, `first_name_english`, `last_name_english`, `nick_name_english`, `first_name_khmer`, `last_name_khmer`, `nick_name_khmer`, `gender`, `identity_card_passport`, `job`, `income_per_month`, `phone_number`, `province`, `khan_district`, `sangkat_commune`, `village`, `home_number`, `email`, `date_of_birth`, `marrital_status`, `account_type`) VALUES
-(1, 'chhing', 'hem', 'abc', 'ឈីង', 'ហែម', 'ចែឈីង', 'Female', NULL, 'Teacher', '150.000', '0972792217', 'Takeo', 'Traing', 'Khvav', 'Dounpher', '0326363800', 'chhing@gmail.com', '1990-02-01 00:00:00', 'Single', NULL),
-(2, 'saorin', 'phan', 'ddd', 'សៅរិន', 'ផាន', 'ចែរិន', 'Female', NULL, 'Developer', '150.000', '0972792217', 'Takeo', 'Traing', 'Khvav', 'Dounpher', '0326363800', 'chhing@gmail.com', '1990-02-01 00:00:00', 'Single', NULL);
+INSERT INTO `customers` (`id`, `CID`, `first_name_english`, `last_name_english`, `nick_name_english`, `first_name_khmer`, `last_name_khmer`, `nick_name_khmer`, `gender`, `identity_card_passport`, `job`, `income_per_month`, `phone_number`, `province`, `khan_district`, `sangkat_commune`, `village`, `home_number`, `email`, `date_of_birth`, `marrital_status`, `account_type`) VALUES
+(1, '0000001', 'chhing', 'hem', 'abc', 'ឈីង', 'ហែម', 'ចែឈីង', 'Female', NULL, 'Teacher', '150.000', '0972792217', 'Takeo', 'Traing', 'Khvav', 'Dounpher', '0326363800', 'chhing@gmail.com', '1990-02-01 00:00:00', 'Single', NULL),
+(2, '0000002', 'saorin', 'phan', 'ddd', 'សៅរិន', 'ផាន', 'ចែរិន', 'Female', NULL, 'Developer', '150.000', '0972792217', 'Takeo', 'Traing', 'Khvav', 'Dounpher', '0326363800', 'chhing@gmail.com', '1990-02-01 00:00:00', 'Single', NULL);
 
 -- --------------------------------------------------------
 
@@ -84,16 +85,18 @@ CREATE TABLE IF NOT EXISTS `loans` (
   `renew_installment` int(11) DEFAULT NULL,
   `interest_rate` decimal(15,3) DEFAULT NULL,
   `penalty_rate` decimal(15,3) DEFAULT NULL,
-  `installment_amount` decimal(15,3) DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+  `installment_amount` decimal(15,3) DEFAULT NULL,
+  `deleted` tinyint(1) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `loans`
 --
 
-INSERT INTO `loans` (`id`, `maturity_date`, `loan_account`, `account_status`, `duration_loan`, `duration_loan_type`, `customer_id`, `product_type_title`, `product_type_id`, `repayment_type`, `ownership_type`, `currency`, `repayment_freg`, `loan_amount`, `loan_amount_in_word`, `first_repayment`, `renew_installment`, `interest_rate`, `penalty_rate`, `installment_amount`) VALUES
-(1, '2015-01-03 00:00:00', '8888-00000001', 'pending', '1', 'year', 1, '100000 Riel - 200000 Riel', 2, 'Anuilty', 'single', 'KHR', 'weekly', '100000.000', NULL, '2015-01-07 00:00:00', 1, '2.000', NULL, '15800.000'),
-(2, '2015-01-01 00:00:00', '8888-00000002', 'pending', '1', 'year', 2, '100000 Riel - 200000 Riel', 2, 'Anuilty', 'single', 'KHR', 'monthly', '100000.000', NULL, '2015-02-01 00:00:00', 1, '2.000', NULL, '15800.000');
+INSERT INTO `loans` (`id`, `maturity_date`, `loan_account`, `account_status`, `duration_loan`, `duration_loan_type`, `customer_id`, `product_type_title`, `product_type_id`, `repayment_type`, `ownership_type`, `currency`, `repayment_freg`, `loan_amount`, `loan_amount_in_word`, `first_repayment`, `renew_installment`, `interest_rate`, `penalty_rate`, `installment_amount`, `deleted`) VALUES
+(1, '2015-01-03 00:00:00', '8888-00000001', 'approved', '1', 'year', 1, '100000 Riel - 200000 Riel', 2, 'Anuilty', 'single', 'KHR', 'weekly', '100000.000', NULL, '2015-01-07 00:00:00', 1, '2.000', NULL, '15800.000', 0),
+(2, '2015-01-06 00:00:00', '8888-00000002', 'pending', '1', 'year', 2, '100000 Riel - 200000 Riel', 2, 'Anuilty', 'single', 'KHR', 'monthly', '100000.000', NULL, '2015-02-06 00:00:00', 1, '2.000', NULL, '15800.000', 0),
+(3, '2015-02-06 00:00:00', '8888-00000003', 'pending', '1', 'year', 2, '100000 Riel - 200000 Riel', 2, 'Anuilty', 'single', 'KHR', 'monthly', '100000.000', NULL, '2015-02-06 00:00:00', 1, '2.000', NULL, '15800.000', 1);
 
 -- --------------------------------------------------------
 
@@ -124,7 +127,7 @@ INSERT INTO `product_types` (`id`, `product_type_title`, `start_range`, `end_ran
 
 CREATE TABLE IF NOT EXISTS `spouse_informations` (
 `id` int(11) NOT NULL,
-  `first_name_english_copy1` varchar(150) DEFAULT NULL,
+  `first_name_english` varchar(150) DEFAULT NULL,
   `last_name_english` varchar(150) DEFAULT NULL,
   `nick_name_english` varchar(150) DEFAULT NULL,
   `first_name_khmer` varchar(150) DEFAULT NULL,
@@ -266,7 +269,7 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 -- AUTO_INCREMENT for table `loans`
 --
 ALTER TABLE `loans`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `product_types`
 --

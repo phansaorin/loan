@@ -26,9 +26,8 @@
             </div>      
             <div class="row">
                 <div class="col-lg-12 loan-contain">
-                  <?php $this->load->view("loan_approvals/includes/info_loan"); ?>
+                  <?php $this->load->view("loans/includes/info_loan"); ?>
                   <div class="row">
-                      <?php //$this->load->view("schedules/includes/payment_schedule"); ?>
                   </div>
                 </div>
                 <!-- end col-lg-12 -->
@@ -56,18 +55,15 @@
     }
   })
 
-  /*$('body').on('click', 'button.btnExit', function(event) {
-    event.preventDefault()
-    $.post(BASE_URL+"loan_approvals/exit_loan", function(resp) {
-      console.log(resp)
-    }, 'json');
-  })*/
+  $('body').on('click', 'button.btnExit', function() {
+    window.location.href = BASE_URL+"loans/list_loan"
+  })
   
   // Approve loan account
   $('body').on('click', 'button.btnApprove', function(event) {
     event.preventDefault()
     var loan_id = $(this).parent().find("input[name='loan_id']").val()
-    $.post(BASE_URL+"loan_approvals/approve_loan/"+loan_id, function(resp) {
+    $.post(BASE_URL+"loans/approve_loan/"+loan_id, function(resp) {
       console.log(resp)
       $(this).parent().find('button.btnDisapprove').removeAttr("disabled")
       $.notify(resp.message, resp.type)
@@ -78,7 +74,7 @@
   $('body').on('click', 'button.btnDisapprove', function(event) {
     event.preventDefault()
     var loan_id = $(this).parent().find("input[name='loan_id']").val()
-    $.post(BASE_URL+"loan_approvals/disapprove_loan/"+loan_id, function(resp) {
+    $.post(BASE_URL+"loans/disapprove_loan/"+loan_id, function(resp) {
       console.log(resp)
       $(this).parent().find('button.btnDisapprove').attr("disabled")
       $.notify(resp.message, resp.type)
@@ -94,7 +90,7 @@
       minLength: 1,
       source: function(req, response){
         $.ajax({
-          url: "<?php echo site_url('loan_approvals/autocomplete'); ?>",
+          url: "<?php echo site_url('loans/autocomplete'); ?>",
           type: 'POST',
           data: {"term" : req.term},
           dataType: "json",
@@ -112,13 +108,13 @@
         // $('span[role="status"]').remove()
 
         $.ajax({
-          url: "<?php echo site_url('loan_approvals/get_loan_selected'); ?>",
+          url: "<?php echo site_url('loans/get_loan_selected'); ?>",
           type: 'POST',
           data: {"id" : ui.item.id},
           dataType: "json",
           success: function(resp){
             if (resp.success) {
-              window.location.href = BASE_URL + "loan_approvals/approval/"+resp.id
+              window.location.href = BASE_URL + "loans/approval/"+resp.id
             };
           },
           error: function(resp) {
