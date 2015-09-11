@@ -48,5 +48,9 @@ class Schedules extends MAIN_Controller {
       */
       $this->load->view('schedules/pdf', $data);
   }
+  function loan_voucher(){
+    $data['title'] = 'Voucher';
+    $this->load->view('schedules/loan_voucher');
+  }
 
 }
