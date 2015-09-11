@@ -362,3 +362,9 @@ h1.title-header{
 .note_start{
     color:red;
 }
+.nature_width {
+    height: 150px !important;
+}
+.border_table{
+    /*border: solid 1px;*/
+}
