@@ -126,4 +126,23 @@ class Loans extends MAIN_Controller {
       	$this->load->view('schedules/pdf', $data);
   	}
 
+  	function voucher($loan_id=-1)
+  	{
+      	$this->load->helper('pdf_helper');
+      	$data['title'] = 'Title';
+      	$data['loan_info'] = $this->Loan_approval->get_info($loan_id);
+      	/*
+          ---- ---- ---- ----
+          your code here
+          ---- ---- ---- ----
+      	*/
+      	$this->load->view('loans/preview_voucher', $data);
+  	}
+
+  	function printing() 
+  	{
+  		$data['controller_name'] = strtolower(get_class());
+  		$this->load->view('loans/print', $data);
+  	}
+
 }
