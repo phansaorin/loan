@@ -73,6 +73,9 @@
                                 <span class="edit btn btn-xs btn-info"> 
                                   <i class="ace-icon fa fa-pencil bigger-120"></i> 
                                </span>
+                                <span class="voucher btn btn-xs btn-default"> 
+                                  <i class="ace-icon fa fa-print"></i>
+                                </span>
                                 <span class="delete btn btn-xs btn-danger"> 
                                   <i class="ace-icon fa fa-times"></i>
                                 </span>
@@ -135,6 +138,11 @@
       t = $(this)
       id = t.parents("tr").data('id')
       window.location.href = BASE_URL+"loans/schedule/"+id;
+    })
+    $('body').on('click', 'span.voucher', function() {
+      t = $(this)
+      id = t.parents("tr").data('id')
+      window.location.href = BASE_URL+"loans/loan_voucher/"+id;
     })
   })
 </script>
