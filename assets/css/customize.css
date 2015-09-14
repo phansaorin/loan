@@ -18,3 +18,6 @@ table.list-order-num td:nth-child(1):before {
 .text-top {
 	vertical-align: top;
 }
+.mr5 {
+	margin-right: 5px;
+}
