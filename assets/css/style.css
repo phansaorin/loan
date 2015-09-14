@@ -368,3 +368,9 @@ h1.title-header{
 .border_table{
     /*border: solid 1px;*/
 }
+h1.title_header_report{
+    font-size: 22px;
+    margin-top: 4px;
+    color: #017C62;
+    position: absolute;
+}
