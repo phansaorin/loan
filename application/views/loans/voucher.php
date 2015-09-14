@@ -172,6 +172,7 @@
             <div class="row">
               <div class="col-xs-12 form-group">
                 <button class="btn btn-success pull-right" onclick="printDiv('voucherPrint')"><i class="ace-icon fa fa-print bigger-120"></i> Print</button>
+                <button class="btn btn-default pull-right btnExit mr5" ><i class="ace-icon fa fa-undo bigger-120"></i> Back</button>
               </div>
               
             </div>
@@ -190,6 +191,12 @@
     window.print();
     document.body.innerHTML = originalContents;
   }
+
+  $(document).ready(function() {
+    $('body').on('click', 'button.btnExit', function() {
+      window.location.href = BASE_URL+"loans"
+    })
+  })
 </script>
 
 </html>
