@@ -14,26 +14,24 @@
     <div id="wrapper">
         <!--  page-wrapper -->
       <div id="page-wrapper">
-
-        <div class="row">
-             <!--  page header -->
-            <div class="col-lg-12">
-                <h1 class="page-header">View Loan</h1>
+        	<div class="panel panel-default">
+      		<div class="panel-heading">
+                <h1 class="title_header_report">View Report</h1>
             </div>
              <!-- end  page header -->
-        </div>      
+     
         <div class="row">
             <div class="col-lg-12 loan-contain">
               <div class="row">
               	<div class="col-md-12">
 					<div class="widget-box">
-						<div class="widget-title">
+						<!-- <div class="widget-title">
 							<span class="icon">
 								<i class="fa fa-align-justify"></i>									
 							</span>
 							<h5><?php echo form_label('Date Range', 'report_date_range_label', array('class'=>'required')); ?>
 							</h5>
-						</div>
+						</div> -->
 						<div class="widget-content nopadding">
 							<?php
 							if(isset($error))
@@ -42,7 +40,7 @@
 							}
 							?>
 							<form  class="form-horizontal form-horizontal-mobiles">
-
+								<br/>
 								<div class="form-group">
 									<?php echo form_label('Date Range', 'reports_date_range',array('class'=>'col-sm-3 col-md-3 col-lg-2 control-label  ')); ?>
 									<div class="col-sm-9 col-md-9 col-lg-10">
@@ -71,36 +69,49 @@
 										<?php echo form_dropdown('end_year',$years, $selected_year, 'id="end_year"'); ?>
 									</div>
 								</div>
-								<div class="form-actions">
-									<?php
-									echo form_button(array(
-										'name'=>'generate_report',
-										'id'=>'generate_report',
-										'content'=>'Submit',
-										'class'=>'btn btn-primary submit_button')
-									);
-									?>
+								<div>
+									
 								</div>
+								<div class="row">
+					                <div class="form-group pull-right">
+					                	<div class="col-lg-6">
+					                		<?php
+												echo form_button(array(
+													'name'=>'generate_report',
+													'id'=>'generate_report',
+													'content'=>'Submit',
+													'class'=>'btn btn-primary submit_button')
+												);
+												?>
+					                	</div>
+					                    <div class="col-lg-6">
+					                        <!-- <input type="hidden" name="loan_id" value="<?php echo $loan_id; ?>" /> -->
+					                        <button class="btn btn-default btnExit">Exit</button>
+					                    </div>
+					                </div>
+					            </div>
 
 							</form>
 						</div>
 					</div>
 				</div>
               </div>
-            </div>
-            <div class="row">
+            <!-- </div> -->
+            <!-- <div class="row">
                 <div class="form-group pull-right">
                     <div class="col-md-12 col-xs-10">
-                        <!-- <input type="hidden" name="loan_id" value="<?php echo $loan_id; ?>" /> -->
+                        <input type="hidden" name="loan_id" value="<?php echo $loan_id; ?>" />
                         <button class="btn btn-default btnExit">Exit</button>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="row footer">&nbsp;</div>
             </div>
             <!-- end col-lg-12 -->
-
+            </div>
+            	
         </div>
+    </div>
           <!-- end wrapper -->  
       </div>
         <!-- end wrapper -->
