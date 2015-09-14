@@ -71,10 +71,11 @@
                                     <h4>Customer Information</h4>
                                         <div class="form-group">
                                             <label>CID</label>
+                                            <!-- <input type="text" name="searches" class="form-control" value="<?php echo $loan_info->loan_account; ?>"> -->
                                             <input class="form-control" name="search_id_name" id="search_id_name" placeholder="search name,id">
                                         </div>
                                         <div class="form-group">
-                                            <label>Please Name: Phan Saorin</label>
+                                            <label>Display Name: Phan Saorin</label>
                                              
                                             <!-- <input class="form-control" placeholder="Enter text" name="lname"> -->
                                         </div>
