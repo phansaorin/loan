@@ -142,7 +142,8 @@
                                     </table>
                                 </div>
                                 <div class="tab-pane fade" id="tabRepayment">
-                                    <div class="table-responsive">                                        <?php $this->load->view('schedules/includes/table_schedule'); ?>
+                                    <div class="table-responsive">                                        
+                                    <?php $this->load->view('schedules/includes/table_schedule'); ?>
                                     </div>
                                 </div>
                             </div>
