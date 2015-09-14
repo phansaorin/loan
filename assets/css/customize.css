@@ -14,3 +14,7 @@ table.list-order-num td:nth-child(1):before {
 	content: counter(my-badass-counter);
 	counter-increment: my-badass-counter;
 }
+
+.text-top {
+	vertical-align: top;
+}
