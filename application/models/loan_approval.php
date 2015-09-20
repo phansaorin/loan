@@ -158,5 +158,98 @@ class Loan_approval extends CI_Model {
         $this->db->where_in('id', $id);            
         return $this->db->update('loans', array('deleted' => 1));
     }
+
+    // Get product type
+    function get_all_product_type() {
+        return $this->db->get('product_types');
+    }
+
+    function suggest_customer($term) {
+        $this->db->where("(first_name_english LIKE '%".$this->db->escape_like_str($term)."%' or 
+        CID LIKE '%".$this->db->escape_like_str($term)."%' or  
+        last_name_english LIKE '%".$this->db->escape_like_str($term)."%' or 
+        CONCAT(`first_name_english`,' ',`last_name_english`) LIKE '%".$this->db->escape_like_str($term)."%' or
+        CONCAT(`last_name_english`,', ',`first_name_english`) LIKE '%".$this->db->escape_like_str($term)."%')");    
+        return $this->db->get('customers');
+    }
+
+    function set_customer_id($customer_id) {
+        $this->session->set_userdata('customer_id', $customer_id);
+    }
+
+    function get_customer_id() {
+        if($this->session->userdata('customer_id') === false)
+            $this->set_customer_id(-1);              
+        return $this->session->userdata('customer_id');
+    }
+
+    function empty_customer_id() {
+        $this->session->unset_userdata('customer_id');
+    }
+
+    function product_type_info($product_type_id) {
+        $this->db->select('*');
+        $this->db->from('product_types');   
+        $this->db->where('product_types.id',$product_type_id);
+        $query = $this->db->get();
+        
+        if($query->num_rows()==1)
+        {
+            return $query->row();
+        }
+        else
+        {
+            $pt_obj = new stdClass();
+
+            $fields = $this->db->list_fields('product_types');
+
+            foreach ($fields as $field)
+            {
+                $pt_obj->$field='';
+            }
+
+            return $pt_obj;
+        }
+    }
+
+    function get_last_running_number() 
+    {
+        $query = $this->db
+                    ->select('loan_account')
+                    ->order_by("id", "desc")
+                    ->limit(1)
+                    ->get('loans');
+        if($query->num_rows() > 0){
+            $data = $query->row();
+            $id = $data->loan_account;
+            $loan_account = explode("-", $id);
+            return $loan_account[1];
+        }else{
+            return false;
+        }
+    }
+
+    function exists($loan_id) {
+        $query = $this->db
+            ->where('id',$loan_id)
+            ->get('loans');
+        if ($query->num_rows() == 1) {
+            return true;
+        }
+        return false;
+    }
+
+    function save(&$loan_data, $loan_id=false){
+        $success = false;
+        $this->db->trans_start();   // Start Transaction
+        if (!$loan_id || !$this->exists($loan_id)) {
+           $success = $this->db->insert('loans', $loan_data);
+           $loan_data['id'] = $this->db->insert_id();
+        } else {
+            $success = $this->db->where('id',$loan_id)->update("loans", $loan_data);
+        }
+        $status = $this->db->trans_complete();
+        return $success;
+    }
        
 }
