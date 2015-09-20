@@ -18,7 +18,7 @@ class MAIN_Controller extends CI_Controller {
         $principle_loan = $loan_info->loan_amount;
         $rate = $loan_info->interest_rate;
         // $pay_capital = round($principle_loan/$rate, 2);
-        $repayment_freg_type = $loan_info->repayment_freg;
+        $repayment_freg_type = strtolower($loan_info->repayment_freg);
         $duration_as_days = 0;  // All duration to think as day
         $repayment_freg = 0;    // Number of day to pay
         $repayment_number = 0;  // Number of repayment as monthly, weekly
@@ -32,6 +32,10 @@ class MAIN_Controller extends CI_Controller {
           // $end_date = date("Y-m-d H:i:s", strtotime("+".$loan_info->duration_loan." years", strtotime($loan_info->maturity_date)));
         } else if ($loan_info->duration_loan_type == "month") {
           $duration_as_days = $loan_info->duration_loan * 30;
+        } else if ($loan_info->duration_loan_type == "week") {
+          $duration_as_days = $loan_info->duration_loan * 7;
+        } else {
+          $duration_as_days = $loan_info->duration_loan; 
         }
         $end_date = date("Y-m-d H:i:s", strtotime("+".$duration_as_days." days", strtotime($loan_info->maturity_date)));
 
@@ -87,18 +91,6 @@ class MAIN_Controller extends CI_Controller {
         }
         return $data_payments;
     }
-
-    /*protected function protectedOne() {
-
-    }
-
-    public function publicOne() {
-
-    }
-
-    private function _privateOne() {
-
-    }*/
 
     protected function render($view_file) {
 

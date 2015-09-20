@@ -1,5 +1,4 @@
 <?php $this->load->view("partial/header_top"); ?>
-<?php //echo $controller_name; ?>
 <body>
   <!--  wrapper -->
    <div id="wrapper">
@@ -24,7 +23,7 @@
              <!-- end  page header -->
             <div class="col-xs-12">
               <div class="form-group pull-right">
-                <?php echo anchor('loan/addLoan', 'New', 'class="btn btn-xs btn-success"'); ?>
+                <?php echo anchor('loans/create', 'New', 'class="btn btn-xs btn-success"'); ?>
                 <?php echo anchor('loans/approval', 'To Approve', 'class="btn btn-xs btn-primary"'); ?>
               </div>
             </div>
@@ -54,7 +53,7 @@
                        ?>
                           <tr data-id="<?php echo $rows->id; ?>">
                               <td>
-                                <?php echo $rows->id;//form_hidden('ids[]', $rows->id); ?>
+                                <?php echo $i;//form_hidden('ids[]', $rows->id); ?>
                               </td>
                               <td><?php echo date('Y-m-d', strtotime($rows->maturity_date)); ?></td>
                               <td><?php echo $rows->loan_account; ?></td>
@@ -143,6 +142,11 @@
       t = $(this)
       id = t.parents("tr").data('id')
       window.location.href = BASE_URL+"loans/loan_voucher/"+id;
+    })
+    $('body').on('click', 'span.edit', function() {
+      t = $(this)
+      id = t.parents("tr").data('id')
+      window.location.href = BASE_URL+"loans/create/"+id;
     })
   })
 </script>

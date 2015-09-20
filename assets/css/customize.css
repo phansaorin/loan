@@ -21,3 +21,6 @@ table.list-order-num td:nth-child(1):before {
 .mr5 {
 	margin-right: 5px;
 }
+.err {
+	color: red;
+}

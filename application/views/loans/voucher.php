@@ -193,7 +193,8 @@
   }
 
   $(document).ready(function() {
-    $('body').on('click', 'button.btnExit', function() {
+    $('body').on('click', 'button.btnExit', function(event) {
+      event.preventDefault()
       window.location.href = BASE_URL+"loans"
     })
   })
