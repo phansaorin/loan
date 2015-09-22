@@ -26,6 +26,7 @@
              <!-- end  page header -->
             <div class="col-xs-12">
               <div class="form-group pull-right">
+                <?php echo anchor('loans/voucher_print', 'New Print', 'class="btn btn-xs btn-success"'); ?>
                 <?php echo anchor('loans/create', 'New', 'class="btn btn-xs btn-success"'); ?>
                 <?php echo anchor('loans/approval', 'To Approve', 'class="btn btn-xs btn-primary"'); ?>
               </div>

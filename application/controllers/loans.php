@@ -251,5 +251,8 @@ class Loans extends MAIN_Controller {
   		$this->load->helper('pdf_helper');
   		$this->load->view('loans/justify');
   	}
+    function voucher_print(){
+      $this->load->view('loans/voucher_print');
+    }
 
 }
