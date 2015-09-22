@@ -14,7 +14,7 @@ input.btn.btn-primary {}
 legend{padding-bottom: 9px !important;}
 h3#add_newuser ,h3#add_salary, h3#new_sta{padding-top: 22px;color: #017C62;}
 span#slas {color: #0088CC;padding-left: 7px;}
-h1.page-header{font-size: 22px;margin-top: 26px;color: #017C62;}
+h1.page-header{font-size: 22px;margin-top: 3px;color: #017C62;}
 .checkbox label{color: #9B9A9A;}
 html {
   font-family: sans-serif;
