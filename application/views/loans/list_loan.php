@@ -12,13 +12,16 @@
     <!--  page-wrapper -->
      <!--  wrapper -->
     <div id="wrapper">
+
         <!--  page-wrapper -->
       <div id="page-wrapper">
-
+        <div>
         <div class="row">
+          <div class="panel panel-default">
+        <div class="panel-heading">
              <!--  page header -->
             <div class="col-lg-12">
-                <h1 class="page-header">Loan List</h1>
+                <h1 class="page-header list_page">Loan List</h1>
             </div>
              <!-- end  page header -->
             <div class="col-xs-12">
@@ -94,6 +97,8 @@
         </div>
           <!-- end wrapper -->  
       </div>
+        <!-- end of panel -->
+        </div></div>
         <!-- end wrapper -->
     </div>
 </body>

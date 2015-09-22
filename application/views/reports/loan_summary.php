@@ -23,7 +23,6 @@
             </div>
              <!-- end  page header -->
         </div>
-
         <div class="col-md-offset-5">                   
             <div>
                 <?php foreach ($summary_data as $name => $value) {
