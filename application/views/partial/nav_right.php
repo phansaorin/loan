@@ -38,34 +38,15 @@
             <?php
             // if ($this->session->userdata('use_type') == 'admin') {
                 ?>  
-                <!-- Start of User  -->
-                <li>
-                    <a href="#"><i class="fa fa-user fa-fw"></i>User Management<span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <?php echo anchor('admin/records', 'Records user'); ?>
-                        </li>
-                        <li>
-                            <?php echo anchor('admin/adduser', 'Add user'); ?>
-                        </li>
-                    </ul>
-
-                </li>
-                <!-- End of Staff -->
-
                 <li>
                     <a href="#"><i class="fa fa-table fa-fw"></i>Loan Management<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
                             <?php echo anchor('loans', 'Records Loan'); ?>
                         </li>
-                        <li>
-                            <?php echo anchor('loan/disturbment_voucher', 'Disturbment VoucherAdd');//echo "<a href=''>Add Staffs</a>"; ?>
-                        </li>
                     </ul>
                     <!-- second-level-items -->
                 </li>
-
                 <li>
                     <a href="#"><i class="fa fa-file fa-fw"></i>Report Management<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">

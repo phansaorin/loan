@@ -43,10 +43,10 @@
                     <a href="#"><i class="fa fa-user fa-fw"></i>User Management<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <?php echo anchor('admin/records', 'Records user'); ?>
+                            <?php echo anchor('#', 'Records user'); ?>
                         </li>
                         <li>
-                            <?php echo anchor('admin/adduser', 'Add user'); ?>
+                            <?php echo anchor('#', 'Add user'); ?>
                         </li>
                     </ul>
 
