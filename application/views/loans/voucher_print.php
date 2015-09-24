@@ -32,7 +32,7 @@
                                 <div class="col-xs-5"><img src="http://localhost/loan/assets/images/logo.png" alt=""></div>
                                 <div class="col-xs-4"><h4>តារាងសង់ប្រាក់</h4></div>
                                 <div class="col-xs-3 pull-right" id="rightTop">
-                                  	វិក័យប័ត្រលេខ : inv0002-1ps
+                                  	វិក័យប័ត្រលេខ : <?php echo $invoice_code; ?>
                                 </div> <!-- the end of the col-lg-5 two-->
                             </div> <!-- the end of row header-->
                             <br/><br/>
@@ -40,8 +40,8 @@
                             	<div class="col-xs-5">
                             		<table>
                             			<tr>
-                            				<td>ឈ្មៅះអតិជន : </td>
-                            				<td>ផាន សៅរិន</td>
+                            				<td>ឈ្មោះអតិជន : </td>
+                            				<td><?php echo strtoupper($customer_info->clne).' '.ucfirst($customer_info->cfne); ?></td>
                             			</tr>
                             			<tr>
                             				<td>កិច្ចសន្យាលេខ : </td>
@@ -53,31 +53,31 @@
                             			</tr>
                             			<tr>
                             				<td>ថ្ងែខែឆ្នាំខ្ចីប្រាក់: </td>
-                            				<td>23-Jan-2015</td>
+                            				<td><?php echo $loan_first_date; ?></td>
                             			</tr>
                             			<tr>
                             				<td>ចំនួនទឹកប្រាក់ខ្ចី: </td>
-                            				<td>400,000</td>
+                            				<td><?php echo number_format((float)$loan_info->loan_amount, 0, '.', ','); ?></td>
                             			</tr>
                             		</table>	
                             	</div>
                                 <div class="col-xs-4">
                                 	<table>
                             			<tr>
-                            				<td>អាស៍យដ្ធាន : </td>
+                            				<td>អាស័យដ្ឋាន : </td>
                             				<td>Por Sen snay</td>
                             			</tr>
                             			<tr>
                             				<td>CID : </td>
-                            				<td>000-1-000007-01</td>
+                            				<td><?php echo $loan_info->loan_account; ?></td>
                             			</tr>
                             			<tr>
-                            				<td>ទូរស៍ព្ទលេខ: </td>
-                            				<td>០៦៩៩៦៩០៥២</td>
+                            				<td>ទូរស័ព្ទលេខ: </td>
+                            				<td><?php echo $customer_info->cphone_number; ?></td>
                             			</tr>
                             			<tr>
                             				<td>ថ្ងែខែឆ្នាំផុតកំណត់: </td>
-                            				<td>27-Jan-2015</td>
+                            				<td><?php echo $loan_deadline_date; ?></td>
                             			</tr>
                             			<tr>
                             				<td>ភ្នាក់ងារបុគ្គលិក: </td>
@@ -90,15 +90,15 @@
                                   	<table>
                             			<tr>
                             				<td>រយះពេលខ្លី : </td>
-                            				<td>6</td>
+                            				<td><?php echo $loan_info->duration_loan .' '. $loan_info->duration_loan_type; ?></td>
                             			</tr>
                             			<tr>
-                            				<td>ប្រភេទរូបិយប៍ណ្ណ : </td>
-                            				<td>រៀល</td>
+                            				<td>ប្រភេទរូបិយបណ្ណ័ : </td>
+                            				<td><?php echo $loan_info->currency; ?></td>
                             			</tr>
                             			<tr>
                             				<td>ខ្ចីលើកទី: </td>
-                            				<td>1</td>
+                            				<td><?php echo $loan_info->renew_installment; ?></td>
                             			</tr>
                             			
                             		</table>	
@@ -108,34 +108,47 @@
                         <br/>
                         <div>
                         	<table class="table table-striped table-bordered table-hover">
-                        		<tr>
-	                        		<th>លរ</th>
-	                        		<th>ថ្ងែខែឆ្នាំបង់ប្រាក់</th>
-	                        		<th>ប្រាក់ដើមត្រូវបង់</th>
-	                        		<th>ការប្រាក់ត្រូវបង់</th>
-	                        		<th>សរុបប្រាក់ត្រូវបង់</th>
-	                        		<th>ប្រាក់ដើមនៅជំញាាក់</th>
-	                        		<th>ហត្ធលេខា</th>
-	                        	</tr>
-	                        	<tr>
-	                        		<td>1</td>
-	                        		<td>អង្គារ៍ 10-Feb-15</td>
-	                        		<td>33,400</td>
-	                        		<td>14,400</td>
-	                        		<td>47,800</td>
-	                        		<td>366,600</td>
-	                        		<td></td>
-	                        	</tr>
-	                        	<tr>
-	                        		<td>2</td>
-	                        		<td>ពុធ 10-Feb-15</td>
-	                        		<td>33,400</td>
-	                        		<td>14,400</td>
-	                        		<td>47,800</td>
-	                        		<td>366,600</td>
-	                        		<td></td>
-	                        	</tr>
-
+                        		<thead>
+                                    <tr>
+                                        <th>លរ</th>
+                                        <th>ថ្ងែខែឆ្នាំបង់ប្រាក់</th>
+                                        <th>ប្រាក់ដើមត្រូវបង់</th>
+                                        <th>ការប្រាក់ត្រូវបង់</th>
+                                        <th>សរុបប្រាក់ត្រូវបង់</th>
+                                        <th>ប្រាក់ដើមនៅជំញាាក់</th>
+                                        <th>ហត្ថលេខា</th>
+                                    </tr>      
+                                </thead>
+                                <tbody>
+                                    <?php 
+                                    $rate = $loan_info->interest_rate;
+                                    $total_pay_capital = 0;
+                                    $total_pay_interest = 0;
+                                    $total_pay_amount = 0;
+                                    $total_rate = 0;
+                                    if (count($data_payments) > 0) {
+                                        $i = 1;
+                                        foreach ($data_payments as $rows) { 
+                                            $day = date('D', strtotime($rows['pay_date']));
+                                            ?>
+                                            <tr>
+                                                <td><?php echo $i; ?></td>
+                                                <td><?php echo $days_in_khmer[$day].' '.date('d-M-Y', strtotime($rows['pay_date'])); ?></td>
+                                                <td><?php echo number_format($rows['pay_capital'], 0, '.', ','); ?></td>
+                                                <td><?php echo number_format(round($rows['beginning_balance'], 2), 0, '.', ','); ?></td>
+                                                <td><?php echo number_format(round($rows['pay_interest'], 2), 0, '.', ','); ?></td>
+                                                <td><?php echo number_format(round($rows['pay_amount'], 2), 0, '.', ','); ?></td>
+                                                <td>&nbsp;</td>
+                                            </tr>
+                                        <?php 
+                                        $i++;
+                                        $total_pay_capital += $rows['pay_capital'];
+                                        $total_pay_interest += $rows['pay_interest'];
+                                        $total_pay_amount += $rows['pay_amount'];
+                                        }
+                                    }
+                                    ?>
+                                </tbody>
                         	</table>
                         </div>
                         <div class="row"​ style="margin-left:5px;">
@@ -148,11 +161,11 @@
                         </div>
                         <div class="row">
                           <div class="col-xs-4">
-                            <p class="text-center">ហត្តលេខាភាគីអោយខ្ចី</p>
+                            <p class="text-center">ហត្ថលេខាភាគីអោយខ្ចី</p>
                             <br/><br/><br/>
                             <p class="text-center">...................................................</p>
                             <br/>
-                            <p class="text-center">ផាន សៅរិន</p>
+                            <p class="text-center">ហែម ឈីងឈីង</p>
                           </div>
                           <div class="col-xs-4">
                             
@@ -162,7 +175,7 @@
                             <br/><br/><br/>
                             <p class="text-center">...................................................</p>
                             <br/>
-                            <p class="text-center">ហែម ឈីងឈីង</p>
+                            <p class="text-center"><?php echo strtoupper($customer_info->clne).' '.ucfirst($customer_info->cfne); ?></p>
                           </div>
                         </div>
                     </div>

@@ -178,7 +178,6 @@ class Loans extends MAIN_Controller {
     	$data['loan_id'] = $loan_id;
     	$data['controller_name'] = strtolower(get_class());
 
-    	$data_payments = array();
     	$data['loan_info'] = $this->Loan_approval->get_info($loan_id);
     	$data_payments = array();
     	if ($loan_id!=-1) {
@@ -251,8 +250,43 @@ class Loans extends MAIN_Controller {
   		$this->load->helper('pdf_helper');
   		$this->load->view('loans/justify');
   	}
-    function voucher_print(){
-      $this->load->view('loans/voucher_print');
+    function voucher_print($loan_id=-1){
+    	$data['loan_info'] = $this->Loan_approval->get_info($loan_id);
+    	$customer_id = $data['loan_info']->customer_id;
+    	$data['customer_info'] = $this->Customer->get_info($customer_id);
+    	// var_dump($data['loan_info']); die();
+
+    	$data_payments = array();
+    	if ($loan_id!=-1) {
+	    	$data_payments = parent::payment_schedule($data['loan_info']);
+    	}
+		$data['data_payments'] = $data_payments;
+		$last_index = count($data_payments) - 1;
+		$data['loan_first_date'] = date('d-M-Y', strtotime($data_payments[0]['pay_date']));
+		$data['loan_deadline_date'] = date('d-M-Y', strtotime($data_payments[$last_index]['pay_date']));
+		$data['invoice_code'] = $this->generate_invoice_code($data['loan_info']->loan_account);
+		$data['days_in_khmer'] = array(
+			'Mon' => 'ចន្ធ័',
+			'Tue' => 'អង្គារ៍',
+			'Wed' => 'ពុធ',
+			'Thu' => 'ព្រហស្បត្តិ៍',
+			'Fri' => 'សុក្រ',
+			'Sat' => 'សៅរ៍',
+			'Sun' => 'អាទិត្យ'
+		);
+
+      	$this->load->view('loans/voucher_print', $data);
+    }
+
+    function generate_invoice_code($loan_account='') {
+    	$invoice_code = "";
+    	$prefix = "inv";
+    	$subfix = "ps";
+    	if($loan_account != ""){
+            $loan_accounts = explode("-", $loan_account);
+            $invoice_code = $prefix.$loan_accounts[1].'-'.$loan_accounts[2].$subfix;
+        }
+        return $invoice_code;
     }
 
 }
