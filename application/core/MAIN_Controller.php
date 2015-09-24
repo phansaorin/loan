@@ -40,9 +40,11 @@ class MAIN_Controller extends CI_Controller {
         $end_date = date("Y-m-d H:i:s", strtotime("+".$duration_as_days." days", strtotime($loan_info->maturity_date)));
 
         if ($repayment_freg_type == "weekly") {
-          $repayment_freg = 7;
+          $repayment_freg = $loan_info->amount_freg * 7;
         } else if ($repayment_freg_type == "monthly") {
-          $repayment_freg = 30;
+          $repayment_freg = $loan_info->amount_freg * 30;
+        } else {  // if ($repayment_freg_type == "daily")
+          $repayment_freg = $loan_info->amount_freg;
         }
 
         // Convert float to integer

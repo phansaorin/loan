@@ -195,7 +195,7 @@ class BusinessDays
         $years = array($year);
 
         // Get New Years, Independence Day, Human's Right, Meak Bochea Day, Women's Right Day, Khmer New Year, Labor Day, King Sihamoni's Birthday, Visak Bochea Day, Constitution Day, Pchum Ben Day, Paris Peach Agreement Day, Coronation Day, Fomer King Sihanouk's Day, Independence Day, Water Fastival, International Human Right Day
-        $holidays = array($year."-01-01", $year."-01-07", $year."-02-14", $year."-03-08", $year."-04-14",$year."-04-15", $year."-04-16", $year."-05-01", $year."-05-13", $year."-05-14", $year."-05-15", $year."-06-18", $year."-09-24", $year."-10-14", $year."-10-23", $year."-10-15", $year."-10-31", $year."-11-09", $year."-11-27", $year."-12-10");
+        $holidays = array($year."-01-01", $year."-01-07", $year."-03-08", $year."-04-14",$year."-04-15", $year."-04-16", $year."-05-01", $year."-05-13", $year."-05-14", $year."-05-15", $year."-06-18", $year."-09-24", $year."-10-14", $year."-10-23", $year."-10-15", $year."-10-31", $year."-11-09", $year."-11-27", $year."-12-10");
 
         foreach ($years as $year) { // Get holidays for each year
 

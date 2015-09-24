@@ -59,11 +59,11 @@
                               <td>
                                 <?php echo $i;//form_hidden('ids[]', $rows->id); ?>
                               </td>
-                              <td><?php echo date('Y-m-d', strtotime($rows->maturity_date)); ?></td>
+                              <td><?php echo date('d-M-Y', strtotime($rows->maturity_date)); ?></td>
                               <td><?php echo $rows->loan_account; ?></td>
                               <td><?php echo $rows->duration_loan.' '.$rows->duration_loan_type; ?></td>
                               <td><?php echo $rows->loan_amount; ?></td>
-                              <td><?php echo date('Y-m-d', strtotime($rows->first_repayment)); ?></td>
+                              <td><?php echo date('d-M-Y', strtotime($rows->first_repayment)); ?></td>
                               <td><?php echo round($rows->interest_rate, 2); ?></td>
                               <td><?php echo $rows->installment_amount; ?></td>
                               <td>
@@ -76,9 +76,12 @@
                                 <span class="edit btn btn-xs btn-info"> 
                                   <i class="ace-icon fa fa-pencil bigger-120"></i> 
                                </span>
-                                <span class="voucher btn btn-xs btn-default"> 
+                               <span class="voucher-print btn btn-xs btn-default"> 
                                   <i class="ace-icon fa fa-print"></i>
                                 </span>
+                                <!-- <span class="voucher btn btn-xs btn-default"> 
+                                  <i class="ace-icon fa fa-print"></i>
+                                </span> -->
                                 <span class="delete btn btn-xs btn-danger"> 
                                   <i class="ace-icon fa fa-times"></i>
                                 </span>
@@ -153,6 +156,11 @@
       t = $(this)
       id = t.parents("tr").data('id')
       window.location.href = BASE_URL+"loans/create/"+id;
+    })
+    $('body').on('click', 'span.voucher-print', function() {
+      t = $(this)
+      id = t.parents("tr").data('id')
+      window.location.href = BASE_URL+"loans/voucher_print/"+id;
     })
   })
 </script>
