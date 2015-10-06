@@ -56,7 +56,6 @@ class Loan_approval extends CI_Model {
             
         $this->db->from('loans');
         $this->db->join('customers', 'customers.id = loans.customer_id');
-        // $this->db->join('spouse_informations', 'spouse_informations.customer_id = customers.id', 'left');
         $this->db->join('product_types', 'product_types.id = loans.product_type_id');
         if ($is_pending) {
             $this->db->where('UPPER(account_status)', strtoupper('pending'));
@@ -141,7 +140,7 @@ class Loan_approval extends CI_Model {
 
 
     // Get all list record of loan
-    function get_all($limit=10000, $offset=0,$col='maturity_date',$order='desc')
+    function get_all($limit=10000, $offset=0,$col='id',$order='desc')
     {
         $query = $this->db->select('*')
             ->order_by($col, $order)
@@ -149,6 +148,13 @@ class Loan_approval extends CI_Model {
             ->get('loans', $limit, $offset);
 
         return $query;
+    }
+
+    function count_all()
+    {
+        $this->db->from('loans');
+        $this->db->where('deleted',0);
+        return $this->db->count_all_results();
     }
 
     /*

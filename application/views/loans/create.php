@@ -25,22 +25,25 @@
                         <!-- Advanced Tables -->
                 <div class="panel panel-default">
                     <div class="panel-body">
-                         <?php echo form_open('loans/save/'.$loan_id, "id = 'form_id'"); ?>
+                         <?php echo form_open('loans/save/'.$loan_id, "id ='form_id' class='form-horizontal'"); ?>
                         <div class="row">
                             <div class="col-lg-6">
                                 <h4>Customer Information</h4>
                                 <div class="form-group">
-                                    <label>CID</label>
-                                    <input class="form-control" name="search_id_name" id="search_id_name" placeholder="search name,id" value="<?php echo $customer_info->CID; ?>" />
+                                    <label class="col-xs-4">CID</label>
+                                    <div class="col-xs-8">
+                                        <input class="form-control" name="search_id_name" id="search_id_name" placeholder="Ex: search name,id" value="<?php echo $customer_info->CID; ?>" />
+                                    </div>
                                 </div>
                                 <div class="form-group">
-                                    <label>Display Name: <span id="displayName"><?php echo $customer_info->cfne.' '.$customer_info->clne; ?></span></label>
+                                    <label class="col-xs-12">Display Name: <span id="displayName">
+                                    <?php echo $customer_info->cfne.' '.$customer_info->clne; ?></span></label>
                                 </div>
                                 <div class="form-group">
-                                    <label>Date Of Birth: <span id="dob"><?php echo $dob = $customer_info->date_of_birth != "" ? date('d-M-Y', strtotime($customer_info->date_of_birth)) : ""; ?></span> <span id="gender"><?php echo ucfirst($customer_info->gender); ?></span></label>
+                                    <label class="col-xs-12">Date Of Birth: <span id="dob"><?php echo $dob = $customer_info->date_of_birth != "" ? date('d-M-Y', strtotime($customer_info->date_of_birth)) : ""; ?></span> <span id="gender"><?php echo ucfirst($customer_info->gender); ?></span></label>
                                 </div>
                                 <div class="form-group">
-                                    <label>Address: <span id="address"><?php echo $customer_info->khan_district.', '.$customer_info->sangkat_commune.', '.$customer_info->village.', '.$customer_info->province; ?></span></label>
+                                    <label class="col-xs-12">Address: <span id="address"><?php echo $customer_info->khan_district.', '.$customer_info->sangkat_commune.', '.$customer_info->village.', '.$customer_info->province; ?></span></label>
                                 </div>
                             </div>         
                       
@@ -48,76 +51,95 @@
                             <div class="col-lg-6">
                                 <h4>Loan Space</h4>
                                 <div class="form-group">
-                                    <label>Owner Typer <span class="note_start">*</span></label>
-                                    <?php 
-                                    $owner_types = array(
-                                        ''=>'--Please select --', 
-                                        'Single'=>'Single', 
-                                        'Group'=>'Group'
-                                    );
-                                    echo form_dropdown('ownership_type', $owner_types, $loan_info->ownership_type, 'class="form-control important" id="ownership_type"');
-                                    ?>
+                                    <label class="col-xs-4">Owner Typer <span class="note_start">*</span></label>
+                                    <div class="col-xs-8">
+                                        <?php 
+                                        $owner_types = array(
+                                            ''=>'--Please select --', 
+                                            'Single'=>'Single', 
+                                            'Group'=>'Group'
+                                        );
+                                        echo form_dropdown('ownership_type', $owner_types, $loan_info->ownership_type, 'class="form-control important" id="ownership_type"');
+                                        ?>
+                                    </div>
                                 </div>
                                 <div class="form-group">
-                                    <label>Loan Duration <span class="note_start">*</span></label>
-                                    <input class="form-control important" placeholder="1" name="duration_loan" id="duration_loan" value="<?php echo $loan_info->duration_loan; ?>">
-                                    <?php 
-                                    $dur_types = array(
-                                        ''=>'--Please select --', 
-                                        'week'=>'Week(s)', 
-                                        'month'=>'Month(s)', 
-                                        'year'=>'Year(s)'
-                                    );
-                                    echo form_dropdown('duration_loan_type', $dur_types, $loan_info->duration_loan_type, 'class="form-control important" id="duration_loan_type"');
-                                    ?>
+                                    <label class="col-xs-4">Loan Duration <span class="note_start">*</span></label>
+                                    <div class="col-xs-8">
+                                        <input class="form-control important" placeholder="Ex: 1" name="duration_loan" id="duration_loan" value="<?php echo $loan_info->duration_loan; ?>">
+                                        <?php 
+                                        $dur_types = array(
+                                            ''=>'--Please select --', 
+                                            'week'=>'Week(s)', 
+                                            'month'=>'Month(s)', 
+                                            'year'=>'Year(s)'
+                                        );
+                                        echo form_dropdown('duration_loan_type', $dur_types, $loan_info->duration_loan_type, 'class="form-control important" id="duration_loan_type"');
+                                        ?>
+                                    </div>
                                 </div>
                                 <div class="form-group">
-                                    <label>Maturity Date <span class="note_start">*</span></label>
-                                    <input class="form-control important date" placeholder="13-08-2015" name="maturity_date" id="maturity_date" value="<?php echo $maturity_date = $loan_info->maturity_date != "" ? date('m/d/Y', strtotime($loan_info->maturity_date)) : date('m/d/Y'); ?>">
+                                    <label class="col-xs-4">Maturity Date <span class="note_start">*</span></label>
+                                    <div class="col-xs-8">
+                                        <input class="form-control important date" placeholder="Ex: 13-08-2015" name="maturity_date" id="maturity_date" value="<?php echo $maturity_date = $loan_info->maturity_date != "" ? date('m/d/Y', strtotime($loan_info->maturity_date)) : date('m/d/Y'); ?>">
+                                    </div>
                                 </div>
                                 <div class="form-group">
-                                    <label>Currency <span class="note_start">*</span></label>
-                                    <?php 
-                                    $currency = array(
-                                        ''=>'--Please select --',
-                                        'KHR'=>'KHR(រ)', 
-                                        'Dolla'=>'Dolla ($)'
-                                    );
-                                    echo form_dropdown('currency', $currency, $loan_info->currency, 'class="form-control important" id="currency"');
-                                    ?>
+                                    <label class="col-xs-4">Currency <span class="note_start">*</span></label>
+                                    <div class="col-xs-8">
+                                        <?php 
+                                        $currency = array(
+                                            ''=>'--Please select --',
+                                            'KHR'=>'KHR(រ)', 
+                                            'Dolla'=>'Dolla ($)'
+                                        );
+                                        echo form_dropdown('currency', $currency, $loan_info->currency, 'class="form-control important" id="currency"');
+                                        ?>
+                                    </div>
                                 </div>
                                  <div class="form-group">
-                                    <label>Payment Freg <span class="note_start">*</span></label>
-                                    <?php 
-                                    $repayment_freg = array(
-                                        ''=>'--Please select --',
-                                        'weekly'=>'Weekly', 
-                                        'monthly'=>'Monthly'
-                                    );
-                                    echo form_dropdown('repayment_freg', $repayment_freg, $loan_info->repayment_freg, 'class="form-control important" id="repayment_freg"');
-                                    ?>
+                                    <label class="col-xs-4">Payment Freg <span class="note_start">*</span></label>
+                                    <div class="col-xs-8">
+                                        <input class="form-control important" placeholder="Ex: 1" name="amount_freg" id="amount_freg" value="<?php echo $loan_info->amount_freg != NULL ? $loan_info->amount_freg : 1; ?>">
+                                        <?php 
+                                        $repayment_freg = array(
+                                            ''=>'--Please select --',
+                                            'weekly'=>'Weekly', 
+                                            'monthly'=>'Monthly'
+                                        );
+                                        echo form_dropdown('repayment_freg', $repayment_freg, $loan_info->repayment_freg, 'class="form-control important" id="repayment_freg"');
+                                        ?>
+                                    </div>
                                 </div>
                                  <div class="form-group">
-                                    <label>Loan Amount <span class="note_start">*</span></label>
-                                    <input class="form-control important" name="loan_amount" id="loan_amount" placeholder="4000" value="<?php echo $loan_info->loan_amount; ?>">
+                                    <label class="col-xs-4">Loan Amount <span class="note_start">*</span></label>
+                                    <div class="col-xs-8">
+                                        <input type="number" class="form-control important" name="loan_amount" id="loan_amount" placeholder="Ex: 4000" value="<?php echo $loan_info->loan_amount; ?>">
+                                    </div>
                                 </div>
                                 <div class="form-group">
-                                    <label>Amount In Word <span class="note_start">*</span></label>
-                                    <input class="form-control important" placeholder="sixty dolla" name="loan_amount_in_word" id="loan_amount_in_word" value="<?php echo $loan_info->loan_amount_in_word; ?>">
+                                    <label class="col-xs-4">Amount In Word <span class="note_start">*</span></label>
+                                    <div class="col-xs-8">
+                                        <input class="form-control important" placeholder="Ex: sixty dolla" name="loan_amount_in_word" id="loan_amount_in_word" value="<?php echo $loan_info->loan_amount_in_word; ?>">
+                                    </div>
                                 </div>
                                 <div class="form-group">
-                                    <label>First Payment <span class="note_start">*</span></label>
-                                    <input class="form-control important date" placeholder="13-08-2015" name="first_repayment" id="first_repayment" value="<?php echo $first_repayment = $loan_info->first_repayment != "" ? date('m/d/Y', strtotime($loan_info->first_repayment)) : date('m/d/Y'); ?>">
+                                    <label class="col-xs-4">First Payment <span class="note_start">*</span></label>
+                                    <div class="col-xs-8">
+                                        <input class="form-control important date" placeholder="Ex: 13-08-2015" name="first_repayment" id="first_repayment" value="<?php echo $first_repayment = $loan_info->first_repayment != "" ? date('m/d/Y', strtotime($loan_info->first_repayment)) : date('m/d/Y'); ?>">
+                                    </div>
                                 </div>
                                 <div class="form-group">
-                                    <label>Repayment Type <span class="note_start">*</span></label>
-                                    <?php 
-                                    $repayment_type = array(
-                                        ''=>'--Please select --',
-                                        'Anuilty'=>'Anuilty'
-                                    );
-                                    echo form_dropdown('repayment_type', $repayment_type, $loan_info->repayment_type, 'class="form-control important" id="repayment_type"');
-                                    ?>
+                                    <label class="col-xs-4">Repayment Type <span class="note_start">*</span></label>
+                                    <div class="col-xs-8">
+                                        <?php 
+                                        $repayment_type = array(
+                                            ''=>'--Please select --',
+                                            'Anuilty'=>'Anuilty'
+                                        );
+                                        echo form_dropdown('repayment_type', $repayment_type, $loan_info->repayment_type, 'class="form-control important" id="repayment_type"');
+                                        ?>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -125,20 +147,28 @@
                             <div class="col-lg-6" style="margin-top:-188px;">
                                 <h4>Installment</h4>
                                 <div class="form-group">
-                                    <label>Num Installment <span class="note_start">*</span></label>
-                                    <input class="form-control important" name="renew_installment" id="renew_installment" placeholder="23" value="<?php echo $loan_info->renew_installment; ?>">
+                                    <label class="col-xs-4">Num Installment <span class="note_start">*</span></label>
+                                    <div class="col-xs-8">
+                                        <input class="form-control important" name="renew_installment" id="renew_installment" placeholder="Ex: 23" value="<?php echo $loan_info->renew_installment; ?>">
+                                    </div>
                                 </div>
                                 <div class="form-group">
-                                    <label>Interst Rate <span class="note_start">*</span></label>
-                                    <input class="form-control important" placeholder="0.5" name="interest_rate" id="interest_rate" value="<?php echo number_format((float)$loan_info->interest_rate, 2, '.', ''); ?>">
+                                    <label class="col-xs-4">Interst Rate <span class="note_start">*</span></label>
+                                    <div class="col-xs-8">
+                                        <input class="form-control important" placeholder="Ex: 0.5" name="interest_rate" id="interest_rate" value="<?php echo number_format((float)$loan_info->interest_rate, 2, '.', ''); ?>">
+                                    </div>
                                 </div>
                                 <div class="form-group">
-                                    <label>Penalty Rate</label>
-                                    <input class="form-control" placeholder="0.5" name="penalty_rate" id="penalty_rate" value="<?php echo number_format((float)$loan_info->penalty_rate, 2, '.', ''); ?>">
+                                    <label class="col-xs-4">Penalty Rate</label>
+                                    <div class="col-xs-8">
+                                        <input class="form-control" placeholder="Ex: 0.5" name="penalty_rate" id="penalty_rate" value="<?php echo number_format((float)$loan_info->penalty_rate, 2, '.', ''); ?>">
+                                    </div>
                                 </div>
                                 <div class="form-group">
-                                    <label>Installment Ammount <span class="note_start">*</span></label>
-                                    <input class="form-control important" placeholder="2" name="installment_amount" id="installment_amount" value="<?php echo $loan_info->installment_amount; ?>">
+                                    <label class="col-xs-4">Installment Ammount <span class="note_start">*</span></label>
+                                    <div class="col-xs-8">
+                                        <input type="number" class="form-control important" placeholder="Ex: 2" name="installment_amount" id="installment_amount" value="<?php echo $loan_info->installment_amount; ?>" readonly>
+                                    </div>
                                 </div>
                                 <p style="color:red;">Note: * are require.</p>
                             </div>
@@ -146,11 +176,13 @@
                             <div class="col-lg-6">
                                 <h4>Project Detail</h4>
                                 <div class="form-group">
-                                    <label>Product Type</label>
+                                    <label class="col-xs-4">Product Type</label>
+                                    <div class="col-xs-8">
                                     <?php 
                                     echo form_dropdown('product_type', $product_types, $loan_info->product_type_id, 'class="form-control" id="product_type"');
                                     ?>
                                     </div>
+                                </div>
                                  <button type="submit" class="btn btn-primary btn_submit pull-right" id="btn_submit">Save</button>
                                  <button class="btn btn-default pull-right btnExit mr5" ><i class="ace-icon fa fa-undo bigger-120"></i> Back</button>
                             </div>
@@ -218,6 +250,15 @@
             });
 
             return false;
+        })
+        
+        $('body').on('keyup', 'input[name="loan_amount"]', function() {
+            var $this = $(this)
+            $("input#installment_amount").val($this.val())
+        })
+        $('body').on('keyup', 'input[name="installment_amount"]', function() {
+            var $this = $(this)
+            $("input#loan_amount").val($this.val())
         })
     })
 

@@ -3,10 +3,17 @@
 class Loans extends MAIN_Controller {
 
 	// List record of loan
-	function index() {
+	function index($offset=0) {
 		$this->clear_sessions();
 		$data['controller_name'] = strtolower(get_class());
-		$data['lists'] = $this->Loan_approval->get_all();
+
+    $config['base_url'] = site_url('loans/index');
+    $config['per_page'] = 2; 
+    $config['total_rows'] = $this->Loan_approval->count_all();
+    $this->pagination->initialize($config);
+    $data['pagination'] = $this->pagination->create_links();
+    $per_page = $config['per_page'];
+    $data['lists'] = $this->Loan_approval->get_all($per_page, $offset);
 
 		$this->load->view('loans/list_loan', $data);
 	}
@@ -21,9 +28,9 @@ class Loans extends MAIN_Controller {
 	}
 
 	function create($loan_id=-1) {
-		$data['loan_id'] = $loan_id;
-		$data['loan_info'] = $this->Loan_approval->get_info($loan_id);
-		$customer_id = $data['loan_info']->customer_id;
+    $data['loan_id'] = $loan_id;
+    $data['loan_info'] = $this->Loan_approval->get_info($loan_id);
+    $customer_id = $data['loan_info']->customer_id;
 		if ($customer_id == "") {
 			$customer_id = $this->Loan_approval->get_customer_id();
 		}
@@ -39,9 +46,15 @@ class Loans extends MAIN_Controller {
 	}
 
 	function save($loan_id=-1){
-        $datas = $this->input->post();
-        $customer_id = $this->Loan_approval->get_customer_id();
-		$customer_info = $this->Customer->get_info($customer_id);
+    $datas = $this->input->post();
+    if ($loan_id == -1) {
+      $customer_id = $this->Loan_approval->get_customer_id();
+      $customer_info = $this->Customer->get_info($customer_id);
+    } else {
+      $loan_info = $this->Loan_approval->get_info($loan_id);
+      $customer_id = $loan_info->customer_id;
+      $customer_info = $this->Customer->get_info($customer_id);
+    }
 		$product_type_info = $this->Loan_approval->product_type_info($datas['product_type']);
 		$loan_account = $this->generate_loan_account($customer_id);
         $loan_data = array(
@@ -55,6 +68,7 @@ class Loans extends MAIN_Controller {
           	'repayment_type' => $datas['repayment_type'],
           	'ownership_type' => $datas['ownership_type'],
           	'currency' => $datas['currency'],
+            'amount_freg' => $datas['amount_freg'],
           	'repayment_freg' => $datas['repayment_freg'],
           	'loan_amount' => $datas['loan_amount'],
           	'loan_amount_in_word' => $datas['loan_amount_in_word'],
@@ -254,7 +268,6 @@ class Loans extends MAIN_Controller {
     	$data['loan_info'] = $this->Loan_approval->get_info($loan_id);
     	$customer_id = $data['loan_info']->customer_id;
     	$data['customer_info'] = $this->Customer->get_info($customer_id);
-    	// var_dump($data['loan_info']); die();
 
     	$data_payments = array();
     	if ($loan_id!=-1) {
