@@ -1,4 +1,35 @@
 <?php $this->load->view("partial/header_top"); ?>
+<style type="text/css">
+ /* ::-webkit-input-placeholder {
+ font-size: 14px;
+ color: #d0cdfa;
+ text-transform: uppercase;
+ text-transform: uppercase;
+ text-align: center;
+ font-weight: bold;
+}
+:-moz-placeholder {*/ /* older Firefox*/
+ /*font-size:14px;
+ color: #d0cdfa;
+ text-transform: uppercase;
+ text-align: center;
+ font-weight: bold;
+}
+::-moz-placeholder {*/ /* Firefox 19+ */ 
+ /*font-size: 14px;
+ color: #d0cdfa; 
+ text-transform: uppercase;
+ text-align: center;
+ font-weight: bold;
+} 
+:-ms-input-placeholder { 
+ font-size: 14px; 
+ color: #d0cdfa;
+ text-transform: uppercase;
+ text-align: center;
+ font-weight: bold;
+}*/
+</style>
 <body>
   <!--  wrapper -->
    <div id="wrapper">
@@ -82,7 +113,7 @@
                                   <i class="ace-icon fa fa-print"></i>
                                 </span> -->
                                 <span class="delete btn btn-xs btn-danger"> 
-                                  <i class="ace-icon fa fa-times"></i>
+                                  <i class="ace-icon fa fa-trash-o"></i>
                                 </span>
                               </td>
                           </tr>
@@ -93,6 +124,11 @@
                   ?>                      
                 </tbody>
               </table>
+              </div>
+               <div class="clear pagination">
+                  <ul>
+                      <?php echo $pagination; ?>
+                  </ul>    
               </div>
             </div>
             <!-- end col-lg-12 -->

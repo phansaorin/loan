@@ -24,3 +24,20 @@ table.list-order-num td:nth-child(1):before {
 .err {
 	color: red;
 }
+
+::-webkit-input-placeholder {
+	font-style: italic !important;
+    color: #CCC !important;
+}
+:-moz-placeholder { /* older Firefox*/
+	font-style: italic !important;
+    color: #CCC !important;
+}
+::-moz-placeholder { /* Firefox 19+ */ 
+	font-style: italic !important;
+    color: #CCC !important;
+} 
+:-ms-input-placeholder { 
+	font-style: italic !important;
+    color: #CCC !important;
+}

@@ -1,15 +1,13 @@
 <table class="table">
     <thead>
         <tr class="filters">
-            <th><input type="text" class="form-control" placeholder="#" disabled></th>
-            <th><input type="text" class="form-control" placeholder="Pay Date" disabled></th>
-            <th><input type="text" class="form-control" placeholder="First Balanch" disabled></th>
-            <!-- <th><input type="text" class="form-control" placeholder="Principle" disabled></th> -->
-            <th><input type="text" class="form-control" placeholder="Pay Capital" disabled></th>
-            <th><input type="text" class="form-control" placeholder="Pay Interest" disabled></th>
-            <th><input type="text" class="form-control" placeholder="Total Payment" disabled></th>
-            <th><input type="text" class="form-control" placeholder="Rate" disabled></th>
-            <th><input type="text" class="form-control" placeholder="Saved Money" disabled></th>
+            <th>#</th>
+            <th>Pay Date</th>
+            <th>First Balanch</th>
+            <th>Pay Capital</th>
+            <th>Pay Interest</th>
+            <th>Total Payment</th>
+            <th>Rate</th>
         </tr>
     </thead>
     <tbody>
@@ -30,14 +28,12 @@
                 <td><?php echo round($rows['pay_interest'], 2); ?></td>
                 <td><?php echo round($rows['pay_amount'], 2); ?></td>
                 <td><?php echo round($rate, 2); ?></td>
-                <td><?php echo '0.00'; ?></td>
             </tr>
         <?php 
         $i++;
         $total_pay_capital += $rows['pay_capital'];
         $total_pay_interest += $rows['pay_interest'];
         $total_pay_amount += $rows['pay_amount'];
-        // $total_rate += $rate;
         }
     }
     ?>
@@ -46,8 +42,6 @@
             <td><?php echo $total_pay_capital; ?></td>
             <td><?php echo $total_pay_interest; ?></td>
             <td colspan="2"><?php echo $total_pay_amount; ?></td>
-            <!-- <td><?php echo $total_rate; ?></td> -->
-            <td><?php echo '0.00'; ?></td>
         </tr>
     </tbody>
 </table>
