@@ -23,15 +23,15 @@
         <div class="row">
             <div class="col-lg-12 loan-contain">
               <div class="row">
-              	<div class="col-md-12">
-					<div class="widget-box">
-						<!-- <div class="widget-title">
-							<span class="icon">
+              	<div class="col-xs-12">
+					<div class="widget-box col-xs-12">
+						<div class="widget-title">
+							<span class="icon pull-left">
 								<i class="fa fa-align-justify"></i>									
 							</span>
 							<h5><?php echo form_label('Date Range', 'report_date_range_label', array('class'=>'required')); ?>
 							</h5>
-						</div> -->
+						</div>
 						<div class="widget-content nopadding">
 							<?php
 							if(isset($error))
@@ -55,17 +55,11 @@
 										<input type="radio" name="report_type" id="complex_radio" value='complex' />
 										&nbsp;
 										<?php echo form_dropdown('start_month',$months, $selected_month, 'id="start_month"'); ?>
-										<div class="mobile_break">&nbsp;</div>
 										<?php echo form_dropdown('start_day',$days, $selected_day, 'id="start_day"'); ?>
-										<div class="mobile_break">&nbsp;</div>
 										<?php echo form_dropdown('start_year',$years, $selected_year, 'id="start_year"'); ?>
-										<div class="mobile_break">&nbsp;</div>
 										<span class="forms_to">-</span>
-										<div class="mobile_break">&nbsp;</div>
 										<?php echo form_dropdown('end_month',$months, $selected_month, 'id="end_month"'); ?>
-										<div class="mobile_break">&nbsp;</div>
 										<?php echo form_dropdown('end_day',$days, $selected_day, 'id="end_day"'); ?>
-										<div class="mobile_break">&nbsp;</div>
 										<?php echo form_dropdown('end_year',$years, $selected_year, 'id="end_year"'); ?>
 									</div>
 								</div>
