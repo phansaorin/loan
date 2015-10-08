@@ -18,11 +18,15 @@
 
             
             <div class="row">
-                 <!--  page header -->
-                <div class="col-lg-12">
-                    <h1 class="page-header">Schedule Payment</h1>
-                </div>
-                 <!-- end  page header -->
+              <div class="panel panel-default">
+                  <div class="panel-heading">
+                      <!--  page header -->
+                      <div class="col-lg-12">
+                      <h1 class="page-header">Schedule Payment</h1>
+                      </div>
+                      <!-- end  page header -->
+                   </div>
+              </div>
             </div>
             <div class="row">
                 <div class="col-lg-12">

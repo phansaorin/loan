@@ -17,11 +17,15 @@
       <div id="page-wrapper">
 
         <div class="row">
-             <!--  page header -->
-            <div class="col-lg-12">
-                <h1 class="page-header">View Loan</h1>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                  <!--  page header -->
+                  <div class="col-lg-12">
+                  <h1 class="page-header">Report Loan</h1>
+                  </div>
+                  <!-- end  page header -->
+               </div>
             </div>
-             <!-- end  page header -->
         </div>
         <div class="col-md-offset-5">                   
             <div>
@@ -69,78 +73,16 @@
             </div>
         </div>
 
-
-
         <div class="row col-md-12">
             <div class="col-lg-12 loan-contain">
-              <div class="row">
-                <div class="col-md-12 center" style="text-align: center;">
-
-                <ul class="stat-boxes">
-                    <li class="popover-visits">
-                        <div class="left peity_bar_good">
-                            <h5><?php echo "Sales"; ?></h5>
+                <div class="row">
+                    <div class="form-group pull-right">
+                        <div class="col-md-12 col-xs-10"> <!-- col-xs-offset-2: for to left-->
+                            <button class="btn btn-default btnExit">Exit</button>
                         </div>
-                        <div class="right">
-                            <strong><?php echo "total sum";//$details_data['sales_total']; ?></strong>
-                        </div>
-                    </li>
-                    
-                    <!-- <li class="popover-visits">
-                        <div class="left peity_bar_good">
-                            <h5><?php echo "Return"; ?></h5>
-                        </div>
-                        <div class="right">
-                            <strong><?php echo to_currency($details_data['returns_total']); ?></strong>
-                        </div>
-                    </li> -->
-                    
-
-                    
-                    <!-- <li class="popover-visits">
-                        <div class="left peity_bar_good">
-                            <h5><?php echo lang('reports_taxes'); ?></h5>
-                        </div>
-                        <div class="right">
-                            <strong><?php echo to_currency($details_data['taxes_total']); ?></strong>
-                        </div>
-                    </li> -->
-
-                    <!-- <li class="popover-visits">
-                        <div class="left peity_bar_good">
-                            <h5><?php echo lang('reports_total'); ?></h5>
-                        </div>
-                        <div class="right">
-                            <strong><?php echo to_currency($details_data['total']); ?></strong>
-                        </div>
-                    </li> -->
-                    
-                    <?php
-                    // if($this->Employee->has_module_action_permission('reports','show_profit',$this->Employee->get_logged_in_employee_info()->person_id))
-                    // {
-                    ?>
-                    <!-- <li class="popover-visits">
-                        <div class="left peity_bar_good">
-                            <h5><?php echo "Profit"; ?></h5>
-                        </div>
-                        <div class="right">
-                            <strong><?php echo to_currency($details_data['profit']); ?></strong>
-                        </div>
-                    </li> -->
-                    <?php //} ?>
-                    </ul>
-                </div>
-                <!-- <br /> -->
-            </div>
-            <div class="row">
-                <div class="form-group pull-right">
-                    <div class="col-md-12 col-xs-10"> <!-- col-xs-offset-2: for to left-->
-                        <input type="hidden" name="loan_id" value="<?php echo $loan_id; ?>" />
-                        <button class="btn btn-default btnExit">Exit</button>
                     </div>
                 </div>
-            </div>
-            <div class="row footer">&nbsp;</div>
+                <div class="row footer">&nbsp;</div>
             </div>
             <!-- end col-lg-12 -->
 
@@ -152,3 +94,11 @@
 </body>
 
 </html>
+<script type="text/javascript">
+    $(function() {
+        $('body').on('click', 'button.btnExit', function(event) {
+            event.preventDefault()
+            window.location.href = BASE_URL+"reports/summary_loan"
+        })
+    })
+</script>
