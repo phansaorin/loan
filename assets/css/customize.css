@@ -41,3 +41,31 @@ table.list-order-num td:nth-child(1):before {
 	font-style: italic !important;
     color: #CCC !important;
 }
+
+select {
+	width: auto;
+}
+
+.dd-handle, .dd2-content {
+    display: block;
+    min-height: 38px;
+    margin: 5px 0;
+    padding: 8px 12px;
+    background: #F8FAFF;
+    border: 1px solid #DAE2EA;
+    color: #7C9EB2;
+    text-decoration: none;
+    font-weight: 700;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.infobox-blue.infobox-dark {
+    background-color: #6fb3e0;
+}
+.inner {
+	color: #FFF;
+}
+#page-wrapper {
+	background-color: #FFF;
+}

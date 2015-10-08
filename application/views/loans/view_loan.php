@@ -17,11 +17,15 @@
       <div id="page-wrapper">
 
         <div class="row">
-             <!--  page header -->
-            <div class="col-lg-12">
-                <h1 class="page-header">View Loan</h1>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                  <!--  page header -->
+                  <div class="col-lg-12">
+                  <h1 class="page-header">View Loan</h1>
+                  </div>
+                  <!-- end  page header -->
+               </div>
             </div>
-             <!-- end  page header -->
         </div>      
         <div class="row">
             <div class="col-lg-12 loan-contain">

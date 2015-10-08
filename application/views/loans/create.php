@@ -16,11 +16,15 @@
             <div id="page-wrapper">
 
                 <div class="row">
-                     <!--  page header -->
-                    <div class="col-lg-12">
-                    <h1 class="page-header">Open loan account</h1>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <!--  page header -->
+                            <div class="col-lg-12">
+                            <h1 class="page-header">Open loan account</h1>
+                            </div>
+                            <!-- end  page header -->
+                         </div>
                     </div>
-                     <!-- end  page header -->
                 </div>
                         <!-- Advanced Tables -->
                 <div class="panel panel-default">
@@ -186,7 +190,6 @@
                                  <button type="submit" class="btn btn-primary btn_submit pull-right" id="btn_submit">Save</button>
                                  <button class="btn btn-default pull-right btnExit mr5" ><i class="ace-icon fa fa-undo bigger-120"></i> Back</button>
                             </div>
-                            <input type="text" id="input">
                         </div>
                     <?php echo form_close(); ?>
                     </div>
@@ -266,8 +269,6 @@
             }
             $("input#installment_amount").val(amount)
         })
-        $('#input').datepicker({
-        });
     })
 
     autoCompleted()
