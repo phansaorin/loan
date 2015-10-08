@@ -1,35 +1,4 @@
 <?php $this->load->view("partial/header_top"); ?>
-<style type="text/css">
- /* ::-webkit-input-placeholder {
- font-size: 14px;
- color: #d0cdfa;
- text-transform: uppercase;
- text-transform: uppercase;
- text-align: center;
- font-weight: bold;
-}
-:-moz-placeholder {*/ /* older Firefox*/
- /*font-size:14px;
- color: #d0cdfa;
- text-transform: uppercase;
- text-align: center;
- font-weight: bold;
-}
-::-moz-placeholder {*/ /* Firefox 19+ */ 
- /*font-size: 14px;
- color: #d0cdfa; 
- text-transform: uppercase;
- text-align: center;
- font-weight: bold;
-} 
-:-ms-input-placeholder { 
- font-size: 14px; 
- color: #d0cdfa;
- text-transform: uppercase;
- text-align: center;
- font-weight: bold;
-}*/
-</style>
 <body>
   <!--  wrapper -->
    <div id="wrapper">
@@ -125,10 +94,8 @@
                 </tbody>
               </table>
               </div>
-               <div class="clear pagination">
-                  <ul>
-                      <?php echo $pagination; ?>
-                  </ul>    
+              <div class="col-xs-12 text-center">
+                <?php echo $pagination; ?>
               </div>
             </div>
             <!-- end col-lg-12 -->

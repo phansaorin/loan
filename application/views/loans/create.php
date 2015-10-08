@@ -120,7 +120,7 @@
                                 <div class="form-group">
                                     <label class="col-xs-4">Amount In Word <span class="note_start">*</span></label>
                                     <div class="col-xs-8">
-                                        <input class="form-control important" placeholder="Ex: sixty dolla" name="loan_amount_in_word" id="loan_amount_in_word" value="<?php echo $loan_info->loan_amount_in_word; ?>">
+                                        <input class="form-control important" placeholder="Ex: sixty dolla" name="loan_amount_in_word" id="loan_amount_in_word" value="<?php echo $loan_info->loan_amount_in_word; ?>" readonly>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -186,6 +186,7 @@
                                  <button type="submit" class="btn btn-primary btn_submit pull-right" id="btn_submit">Save</button>
                                  <button class="btn btn-default pull-right btnExit mr5" ><i class="ace-icon fa fa-undo bigger-120"></i> Back</button>
                             </div>
+                            <input type="text" id="input">
                         </div>
                     <?php echo form_close(); ?>
                     </div>
@@ -253,13 +254,20 @@
         })
         
         $('body').on('keyup', 'input[name="loan_amount"]', function() {
-            var $this = $(this)
-            $("input#installment_amount").val($this.val())
+            var $this = $(this), amount_in_word = "", amount = ""
+            amount = $this.val()
+            if (amount == "") {
+                $("input#loan_amount_in_word").val("")
+            } else {
+                var translator = new T2W("EN_US");
+                amount_in_word = translator.toWords(parseInt(amount))
+                $("input#loan_amount_in_word").val(amount_in_word)
+                // .css({"textTransform" : "capitalize"})
+            }
+            $("input#installment_amount").val(amount)
         })
-        $('body').on('keyup', 'input[name="installment_amount"]', function() {
-            var $this = $(this)
-            $("input#loan_amount").val($this.val())
-        })
+        $('#input').datepicker({
+        });
     })
 
     autoCompleted()
@@ -292,14 +300,11 @@
               dataType: "json",
               success: function(resp){
                 if (resp.success) {
-                  // window.location.href = BASE_URL + "loans/create"
                   $('input[name="search_id_name"]').val(resp.customer.CID)
                   $('span#displayName').text(resp.customer.cfne+" "+resp.customer.clne)
                   $('span#dob').text(resp.dob)
                   $('span#gender').text(resp.customer.gender)
                   $('span#address').text(resp.customer.khan_district+', '+resp.customer.sangkat_commune+', '+resp.customer.village+', '+resp.customer.province)
-
-
                 };
               },
               error: function(resp) {
