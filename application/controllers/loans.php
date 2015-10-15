@@ -68,6 +68,7 @@ class Loans extends MAIN_Controller {
     $data['loan_id'] = $loan_id;
     $data['loan_info'] = $this->Loan_approval->get_info($loan_id);
     $customer_id = $data['loan_info']->customer_id;
+    // var_dump($customer_id); die();
 		if ($customer_id == "") {
 			$customer_id = $this->Loan_approval->get_customer_id();
 		}
