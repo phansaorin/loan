@@ -69,3 +69,89 @@ select {
 #page-wrapper {
 	background-color: #FFF;
 }
+.note-div {
+	color: #5E715B;
+	margin-left:5px;
+}
+.note_voucher {
+	text-decoration: underline;
+    font-style: italic;
+}
+ul.list-note {
+	margin-left: 70px;
+}
+.div-signature {
+	margin-top: 30px;
+}
+.so-light-green {
+	color: #5E715B;
+}
+.fw-500 {
+	font-weight: 500;
+}
+table.tbl-voucher {
+	width: 100%;
+}
+table.tbl-voucher td.td-value {
+	font-weight: 500;
+}
+table.tbl-voucher td.td-left {
+	color: #5E715B;
+	line-height: 25px;
+	padding-right: 15px;
+	vertical-align: top;
+	width: 40%;
+}
+table.tbl-voucher-right td.td-left {
+    width: 55%;
+}
+table.tbl-voucher-schedule th {
+    background-color: #B2BFB1;
+    color: #5E715B;
+}
+table.tbl-voucher-schedule th, table.tbl-voucher-schedule td {
+	text-align: center;
+}
+table.tbl-voucher-right {
+	float: right;
+}
+table.tbl-100 {
+	width: 100%;
+}
+table.tbl-90 {
+	width: 90%;
+}
+div#invoice-no {
+    margin-top: 35px;
+}
+/* Enable print background on Chrome */
+body{
+  -webkit-print-color-adjust:exact;
+}
+@media print {
+	table.tbl-voucher-schedule th {
+	    background-color: #B2BFB1 !important;
+	    color: #5E715B !important;
+	    font-weight: normal !important;
+	}
+	table.tbl-voucher td.td-left {
+		color: #5E715B !important;
+		line-height: 25px !important;
+		padding-right: 15px !important;
+		vertical-align: top !important;
+		width: 55% !important;
+	}
+	.note-div {
+		color: #5E715B !important;
+		margin-left:5px !important;
+	}
+	.note-div {
+		color: red !important;
+	}
+	.so-light-green {
+		color: #5E715B !important;
+	}
+	.fw-500 {
+		font-weight: 500 !important;
+	}
+}
