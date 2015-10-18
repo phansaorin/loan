@@ -250,58 +250,6 @@ class Loans extends MAIN_Controller {
     $this->load->view("schedules/schedule", $data);
   }
 
-  	function get_holidays() {
-	  	$start_date = '2015-01-01';
-	  	$end_date = '2015-01-10';
-
-	  	$holidays = $this->businessdays->getHolidayDays($start_date,$end_date);
-
-	  	$year = date("Y");
-	  	$holiday = $this->businessdays->get_holiday($year, 05, 1, 4);
-  	}
-
-  	function pdf()
-  	{
-      	$this->load->helper('pdf_helper');
-      	$data['title'] = 'Title';
-      	/*
-          ---- ---- ---- ----
-          your code here
-          ---- ---- ---- ----
-      	*/
-      	$this->load->view('schedules/pdf', $data);
-  	}
-
-  	function voucher($loan_id=-1)
-  	{
-      	$this->load->helper('pdf_helper');
-      	$data['title'] = 'Title';
-      	$data['loan_info'] = $this->Loan_approval->get_info($loan_id);
-      	/*
-          ---- ---- ---- ----
-          your code here
-          ---- ---- ---- ----
-      	*/
-      	$this->load->view('loans/preview_voucher', $data);
-  	}
-
-  	function loan_voucher($loan_id=-1){
-	    $data['title'] = 'Voucher';
-	    $data['loan_info'] = $this->Loan_approval->get_info($loan_id);
-
-	    $this->load->view('loans/voucher', $data);
-	}
-
-  	function printing() 
-  	{
-  		$data['controller_name'] = strtolower(get_class());
-  		$this->load->view('loans/print', $data);
-  	}
-
-  	function pdf_justified() {
-  		$this->load->helper('pdf_helper');
-  		$this->load->view('loans/justify');
-  	}
     function voucher_print($loan_id=-1){
     	$data['loan_info'] = $this->Loan_approval->get_info($loan_id);
     	$customer_id = $data['loan_info']->customer_id;
