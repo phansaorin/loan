@@ -176,7 +176,6 @@
                                 </div>
                                 <p style="color:red;">Note: * are require.</p>
                             </div>
-                            
                             <div class="col-lg-6">
                                 <h4>Project Detail</h4>
                                 <div class="form-group">
