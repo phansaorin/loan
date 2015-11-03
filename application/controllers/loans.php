@@ -114,7 +114,8 @@ class Loans extends MAIN_Controller {
           	'renew_installment' => $datas['renew_installment'],
           	'interest_rate' => $datas['interest_rate'],
           	'penalty_rate' => $datas['penalty_rate'],
-          	'installment_amount' => $datas['installment_amount']
+          	'installment_amount' => $datas['installment_amount'],
+            'status_loan' => $datas['status_loan']
         );
         if ($this->Loan_approval->save($loan_data, $loan_id)) {
         	if ($loan_id==-1) {
