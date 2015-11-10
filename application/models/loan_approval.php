@@ -40,7 +40,7 @@ class Loan_approval extends CI_Model {
         //If we are NOT an int return empty item
         if (!is_numeric($loan_id))
         {
-            //Get empty base parent object, as $meeting_id is NOT an item
+            //Get empty base parent object, as $loan_id is NOT an item
             $loan_obj = $this->get_customer_info(-1);
 
             //Get all the fields from loans table
@@ -71,7 +71,7 @@ class Loan_approval extends CI_Model {
         }
         else
         {
-            //Get empty base parent object, as $meeting_id is NOT an item
+            //Get empty base parent object, as $loan_id is NOT an item
             $loan_obj = $this->get_customer_info(-1);
 
             //Get all the fields from loans table
@@ -91,7 +91,7 @@ class Loan_approval extends CI_Model {
         //If we are NOT an int return empty item
         if (!is_numeric($customer_id))
         {
-            //Get empty base parent object, as $meeting_id is NOT an item
+            //Get empty base parent object, as $loan_id is NOT an item
             $customer_obj = new stdClass();
 
             //Get all the fields from customers table
@@ -117,7 +117,7 @@ class Loan_approval extends CI_Model {
         }
         else
         {
-            //Get empty base parent object, as $meeting_id is NOT an item
+            //Get empty base parent object, as $loan_id is NOT an item
             $customer_obj= new stdClass();
 
             //Get all the fields from customers table
@@ -256,6 +256,95 @@ class Loan_approval extends CI_Model {
         }
         $status = $this->db->trans_complete();
         return $success;
+    }
+
+    function exists_schedule($loan_id) {
+        $query = $this->db
+            ->where('loan_id',$loan_id)
+            ->get('payment_schedules');
+        if ($query->num_rows() > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    function save_schedule(&$schedules, $loan_id=false){
+        $success = false;
+        $this->db->trans_start();   // Start Transaction
+        if (!$this->exists_schedule($loan_id)) {
+            if (count($schedules) > 0) {
+                foreach ($schedules as $rows) {
+                   $success = $this->db->insert('payment_schedules', $rows);
+                }
+            }
+        } else {
+            if ($this->delete_schedule($loan_id)) {
+                if (count($schedules) > 0) {
+                    foreach ($schedules as $rows) {
+                       $success = $this->db->insert('payment_schedules', $rows);
+                    }
+                }
+            }
+        }
+        $this->db->trans_complete();
+        return $success;
+    }
+
+    // Delete schedule payment by loan ID
+    function delete_schedule($loan_id=-1) {
+        if ($loan_id) {
+            return $this->db->where("loan_id", $loan_id)->delete("payment_schedules");
+        }
+        return false;
+    }
+
+    // Get row from schedule payment
+    function get_schedule($loan_id)
+    {
+        //If we are NOT an int return empty item
+        if (!is_numeric($loan_id))
+        {
+            //Get empty base parent object, as $loan_id is NOT an item
+            $ps_obj = new stdClass();
+
+            //Get all the fields from payment_schedules table
+            $fields = $this->db->list_fields('payment_schedules');
+
+            foreach ($fields as $field)
+            {
+                $ps_obj->$field='';
+            }
+
+            return $ps_obj;    
+        }
+        
+        $this->db->select('pay_date, beginning_balance, pay_capital, pay_interest');
+        $this->db->from('payment_schedules');
+        $this->db->join('loans', 'payment_schedules.loan_id = loans.id');
+        $this->db->where('payment_schedules.loan_id',$loan_id);
+        $this->db->where('loans.deleted',0);
+        
+        $query = $this->db->get();
+
+        if($query->num_rows() > 0)
+        {
+            return $query->result_array();
+        }
+        else
+        {
+            //Get empty base parent object, as $loan_id is NOT an item
+            $ps_obj = new stdClass();
+
+            //Get all the fields from payment_schedules table
+            $fields = $this->db->list_fields('payment_schedules');
+
+            foreach ($fields as $field)
+            {
+                $ps_obj->$field='';
+            }
+
+            return $ps_obj;
+        }
     }
        
 }

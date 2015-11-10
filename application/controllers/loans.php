@@ -7,22 +7,6 @@ class Loans extends MAIN_Controller {
 		$this->clear_sessions();
 		$data['controller_name'] = strtolower(get_class());
 
-    /* This Application Must Be Used With BootStrap 3 *  */
-    /*$config['full_tag_open'] = "<ul class='pagination'>";
-    $config['full_tag_close'] ="</ul>";
-    $config['num_tag_open'] = '<li>';
-    $config['num_tag_close'] = '</li>';
-    $config['cur_tag_open'] = "<li class='disabled'><li class='active'><a href='#'>";
-    $config['cur_tag_close'] = "<span class='sr-only'></span></a></li>";
-    $config['next_tag_open'] = "<li>";
-    $config['next_tagl_close'] = "</li>";
-    $config['prev_tag_open'] = "<li>";
-    $config['prev_tagl_close'] = "</li>";
-    $config['first_tag_open'] = "<li>";
-    $config['first_tagl_close'] = "</li>";
-    $config['last_tag_open'] = "<li>";
-    $config['last_tagl_close'] = "</li>";*/
-
      //config for bootstrap pagination class integration
     $config['full_tag_open'] = '<ul class="pagination">';
     $config['full_tag_close'] = '</ul>';
@@ -45,12 +29,16 @@ class Loans extends MAIN_Controller {
 
 
     $config['base_url'] = site_url('loans/index');
-    $config['per_page'] = 2; 
+    $config['per_page'] = 10000; 
     $config['total_rows'] = $this->Loan_approval->count_all();
     $this->pagination->initialize($config);
     $data['pagination'] = $this->pagination->create_links();
     $per_page = $config['per_page'];
     $data['lists'] = $this->Loan_approval->get_all($per_page, $offset);
+    $status = array('' => "-- Please Select --", 'proccessing' => 'Proccesing', 'bad-loan' => 'Bad Loan', 'pay-off' => 'Pay Off');
+    $data['status'] = $status;
+    $approval = array('' => "-- Please Select --", 'approved' => 'Approved', 'pending' => "Pending");
+    $data['approval'] = $approval;
 
 		$this->load->view('loans/list_loan', $data);
 	}
@@ -68,7 +56,6 @@ class Loans extends MAIN_Controller {
     $data['loan_id'] = $loan_id;
     $data['loan_info'] = $this->Loan_approval->get_info($loan_id);
     $customer_id = $data['loan_info']->customer_id;
-    // var_dump($customer_id); die();
 		if ($customer_id == "") {
 			$customer_id = $this->Loan_approval->get_customer_id();
 		}
@@ -80,6 +67,8 @@ class Loans extends MAIN_Controller {
 			$product_types[$pt->id] = $pt->product_type_title;
 		}
 		$data['product_types'] = $product_types;
+    $status = array('' => "-- Please Select --", 'proccessing' => 'Proccesing', 'bad-loan' => 'Bad Loan', 'pay-off' => 'Pay Off');
+    $data['status'] = $status;
 		$this->load->view("loans/create", $data);
 	}
 
@@ -114,12 +103,19 @@ class Loans extends MAIN_Controller {
           	'renew_installment' => $datas['renew_installment'],
           	'interest_rate' => $datas['interest_rate'],
           	'penalty_rate' => $datas['penalty_rate'],
-          	'installment_amount' => $datas['installment_amount']
+            'installment_amount' => $datas['installment_amount'],
+          	'status' => $datas['status']
         );
         if ($this->Loan_approval->save($loan_data, $loan_id)) {
         	if ($loan_id==-1) {
         		$loan_id = $loan_data['id'];
         	}
+          $data['loan_info'] = $this->Loan_approval->get_info($loan_id);
+          $data_payments = parent::payment_schedule($data['loan_info']);
+          $rate = $data['loan_info']->interest_rate;
+          $schedules = $this->convert_schedule($data_payments, $rate, $loan_id);
+          $this->Loan_approval->save_schedule($schedules, $loan_id);
+
           echo json_encode(array("success"=>true, 'message'=>"Add/Update successfully", 'loan_id'=>$loan_id));
         } else {
           echo json_encode(array("success"=>FALSE, 'message'=>'Cannot Add/Update loan', 'loan_id'=>$loan_id));
@@ -218,36 +214,56 @@ class Loans extends MAIN_Controller {
 
 	// Delete loan by given id
 	function delete() {
-        $items_to_delete  = $this->input->post('ids');
-        if ($this->Loan_approval->delete_list($items_to_delete)) {
-            echo json_encode(array('success' => true, 'message' => 'Loan delete successfully!'));
-        } else {
-            echo json_encode(array('success' => false, 'message' => 'Loan can not be delete.'));
-        }
-    }
+      $items_to_delete  = $this->input->post('ids');
+      if ($this->Loan_approval->delete_list($items_to_delete)) {
+          echo json_encode(array('success' => true, 'message' => 'Loan delete successfully!'));
+      } else {
+          echo json_encode(array('success' => false, 'message' => 'Loan can not be delete.'));
+      }
+  }
 
-    function view_loan($loan_id=-1) {
-    	$data['loan_id'] = $loan_id;
-    	$data['controller_name'] = strtolower(get_class());
+  function view_loan($loan_id=-1) {
+  	$data['loan_id'] = $loan_id;
+  	$data['controller_name'] = strtolower(get_class());
 
-    	$data['loan_info'] = $this->Loan_approval->get_info($loan_id);
-    	$data_payments = array();
-    	if ($loan_id!=-1) {
-	    	$data_payments = parent::payment_schedule($data['loan_info']);
-    	}
-		$data['data_payments'] = $data_payments;
+  	$data['loan_info'] = $this->Loan_approval->get_info($loan_id);
+  	$data_payments = array();
+  	if ($loan_id!=-1) {
+    	$data_payments = parent::payment_schedule($data['loan_info']);
+  	}
+	   $data['data_payments'] = $data_payments;
 
-    	$this->load->view('loans/view_loan', $data);
-    }
+  	$this->load->view('loans/view_loan', $data);
+  }
 
-    public function schedule($loan_id=-1)
+  public function schedule($loan_id=-1)
   {
     $data['controller_name'] = strtolower(get_class());
     $data['loan_info'] = $this->Loan_approval->get_info($loan_id);
-    $data_payments = parent::payment_schedule($data['loan_info']);
-    $data['data_payments'] = $data_payments;
+    $data_schedules = $this->Loan_approval->get_schedule($loan_id);
+    foreach ($data_schedules as $key => $rows) {
+      $data_schedules[$key]['pay_amount'] = $rows['pay_capital'] + $rows['pay_interest'];
+    }
+    $data['data_payments'] = $data_schedules;
 
     $this->load->view("schedules/schedule", $data);
+  }
+
+  function convert_schedule($data_payments, $rate, $loan_id=-1) {
+    $schedules = array();
+    if (count($data_payments) > 0) {
+      foreach ($data_payments as $key => $rows) {
+        $schedules[] = array(
+          'loan_id' => $loan_id,
+          'pay_date' => $rows['pay_date'],
+          'beginning_balance' => $rows['beginning_balance'],
+          'pay_capital' => $rows['pay_capital'],
+          'pay_interest' => $rows['pay_interest'],
+          'rate' => $rate,
+        );
+      }
+    }
+    return $schedules;
   }
 
     function voucher_print($loan_id=-1){
@@ -286,6 +302,17 @@ class Loans extends MAIN_Controller {
             $invoice_code = $prefix.$loan_accounts[1].'-'.$loan_accounts[2].$subfix;
         }
         return $invoice_code;
+    }
+
+    // Update loan by id
+    function update_status($loan_id=-1) {
+      $status = trim($this->input->post('status')) != "" ? $this->input->post('status') : NULL;
+      $data = array('status'=>$status);
+      if ($this->Loan_approval->dis_approve_loan($data, $loan_id)) {
+        echo json_encode(array('success'=>true, 'message'=>'You have updated on the loan account', 'type'=>'success'));
+      } else {
+        echo json_encode(array('success'=>false, 'message'=>'You updated this loan account unsuccessfully', 'type'=>'error'));
+      }
     }
 
 }

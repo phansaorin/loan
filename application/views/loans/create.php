@@ -186,6 +186,14 @@
                                     ?>
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <label class="col-xs-4">Status</label>
+                                    <div class="col-xs-8">
+                                    <?php 
+                                    echo form_dropdown('status', $status, $loan_info->status, 'class="form-control" id="status"');
+                                    ?>
+                                    </div>
+                                </div>
                                  <button type="submit" class="btn btn-primary btn_submit pull-right" id="btn_submit">Save</button>
                                  <button class="btn btn-default pull-right btnExit mr5" ><i class="ace-icon fa fa-undo bigger-120"></i> Back</button>
                             </div>
