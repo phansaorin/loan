@@ -82,6 +82,22 @@
                                         ?>
                                     </div>
                                 </div>
+                                <!-- just add new fill -->
+                                <div class="form-group">
+                                    <label class="col-xs-4">Status <span class="note_start">*</span></label>
+                                    <div class="col-xs-8">
+                                        <?php 
+                                        $status_types = array(
+                                            ''=>'--Please select --', 
+                                            '1'=>'Processing', 
+                                            'month'=>'Completed', 
+                                            'year'=>'Bad Loan'
+                                        );
+                                        echo form_dropdown('status_loan', $status_types, $loan_info->status_loan, 'class="form-control important" id="duration_loan_type"');
+                                        ?>
+                                    </div>
+                                </div>
+                                <!-- end of new fill -->
                                 <div class="form-group">
                                     <label class="col-xs-4">Maturity Date <span class="note_start">*</span></label>
                                     <div class="col-xs-8">
