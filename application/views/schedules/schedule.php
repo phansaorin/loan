@@ -54,7 +54,8 @@
             <div class="row">
                 <div class="form-group pull-right">
                     <div class="col-md-12 col-xs-10"> <!-- col-xs-offset-2: for to left-->
-                        <button class="btn btn-default btnExit">Exit</button>
+                        <button class="btn btn-success pull-right" onclick="printDiv('printSchedule')"><i class="ace-icon fa fa-print bigger-120"></i> Print</button>
+                        <button class="btn btn-default btnExit pull-right mr5">Exit</button>
                     </div>
                 </div>
             </div>
@@ -65,6 +66,14 @@
 </body>
 
 <script type="text/javascript">
+  function printDiv(divId) {
+    var printContents = document.getElementById(divId).innerHTML;
+    var originalContents = document.body.innerHTML;
+    document.body.innerHTML = "<html><head><title></title></head><body>" + printContents + "</body>";
+    window.print();
+    document.body.innerHTML = originalContents;
+  }
+
   $(document).ready(function() {
     $('body').on('click', 'button.btnExit', function() {
       window.location.href = BASE_URL+"loans"

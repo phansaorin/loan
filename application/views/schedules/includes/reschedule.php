@@ -8,6 +8,7 @@
             <th>Pay Interest</th>
             <th>Total Payment</th>
             <th>Rate</th>
+            <th>Paid?</th>
         </tr>
     </thead>
     <tbody>
@@ -28,6 +29,12 @@
                 <td><?php echo round($rows['pay_interest'], 2); ?></td>
                 <td><?php echo round($rows['pay_amount'], 2); ?></td>
                 <td><?php echo round($rate, 2); ?></td>
+                <td>
+                <?php
+                $paid = array('0' => "No", '1' => "Yes");
+                echo form_dropdown('paid', $paid, "", 'class="form-control paid"');
+                ?>
+                </td>
             </tr>
         <?php 
         $i++;
@@ -40,8 +47,8 @@
         <tr>
             <td colspan="3"><label class="pull-right">Total</label></td>
             <td><?php echo $total_pay_capital; ?></td>
-            <td><?php echo round($total_pay_interest); ?></td>
-            <td colspan="2"><?php echo $total_pay_amount; ?></td>
+            <td><?php echo $total_pay_interest; ?></td>
+            <td colspan="3"><?php echo $total_pay_amount; ?></td>
         </tr>
     </tbody>
 </table>
