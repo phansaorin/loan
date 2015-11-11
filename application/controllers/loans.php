@@ -315,4 +315,50 @@ class Loans extends MAIN_Controller {
       }
     }
 
+    // paid loan
+  function paid($loan_id=-1) {
+    $posts = $this->input->post();
+    $id = $posts['id'];
+    $data = array('paid' => $posts['paid'], 'paid_date' => date('Y-m-d'));
+    if ($this->Loan_approval->update_payment_schedule($data, $loan_id, $id)) {
+      echo json_encode(array('success'=>true, 'message'=>'You have paid on this row', 'type'=>'success'));
+    } else {
+      echo json_encode(array('success'=>false, 'message'=>'Unsuccessfully', 'type'=>'error'));
+    }
+  }
+
+  // Reschedule loan
+  function reschedule() {
+    $posts = $this->input->post();
+    $loan_id = $posts['loan_id'];
+    $this->session->set_userdata('total_reschedule', $posts['total_reschedule']);
+    echo json_encode(array('success'=>true, 'message'=>'You have paid on this row', 'type'=>'success'));
+  }
+
+  // Get clone data of reschedule loan by given loan id
+  function clone_data($loan_id=-1) {
+    $total_reschedule = $this->session->userdata('total_reschedule');
+    $data['loan_id'] = -1;
+    $data['loan_info'] = $this->Loan_approval->get_info($loan_id);
+    $data['loan_info']->loan_amount = round($total_reschedule);
+    $data['loan_info']->installment_amount = round($total_reschedule);
+    $data['loan_info']->loan_amount_in_word = "";
+    $data['loan_info']->maturity_date = date('Y-m-d');
+    $data['loan_info']->first_repayment = "";
+    $data['loan_info']->status = NULL;
+    $data['loan_info']->renew_installment = $data['loan_info']->renew_installment + 1;
+    $customer_id = $data['loan_info']->customer_id;
+    $data['customer_info'] = $this->Customer->get_info($customer_id);
+
+    $product_type = $this->Loan_approval->get_all_product_type();
+    $product_types = array(''=>'-- Please Select --');
+    foreach ($product_type->result() as $key => $pt) {
+      $product_types[$pt->id] = $pt->product_type_title;
+    }
+    $data['product_types'] = $product_types;
+    $status = array('' => "-- Please Select --", 'proccessing' => 'Proccesing', 'bad-loan' => 'Bad Loan', 'pay-off' => 'Pay Off');
+    $data['status'] = $status;
+    $this->load->view("loans/create", $data);
+  }
+
 }

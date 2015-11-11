@@ -164,3 +164,7 @@ body{
 
     background-position: 13% 22%;
 }
+
+.clearboth {
+	clear: both;
+}
