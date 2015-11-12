@@ -82,22 +82,6 @@
                                         ?>
                                     </div>
                                 </div>
-                                <!-- just add new fill -->
-                                <div class="form-group">
-                                    <label class="col-xs-4">Status <span class="note_start">*</span></label>
-                                    <div class="col-xs-8">
-                                        <?php 
-                                        $status_types = array(
-                                            ''=>'--Please select --', 
-                                            '1'=>'Processing', 
-                                            'month'=>'Completed', 
-                                            'year'=>'Bad Loan'
-                                        );
-                                        echo form_dropdown('status_loan', $status_types, $loan_info->status_loan, 'class="form-control important" id="duration_loan_type"');
-                                        ?>
-                                    </div>
-                                </div>
-                                <!-- end of new fill -->
                                 <div class="form-group">
                                     <label class="col-xs-4">Maturity Date <span class="note_start">*</span></label>
                                     <div class="col-xs-8">
@@ -229,6 +213,7 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
+        getWords()
         $('.date').datepicker({
             // Set option
         });
@@ -293,6 +278,20 @@
             $("input#installment_amount").val(amount)
         })
     })
+
+    function getWords() {
+        var amount_in_word = "", amount = ""
+        amount = $('input[name="loan_amount"]').val()
+        if (amount == "") {
+            $("input#loan_amount_in_word").val("")
+        } else {
+            var translator = new T2W("EN_US");
+            amount_in_word = translator.toWords(parseInt(amount))
+            $("input#loan_amount_in_word").val(amount_in_word)
+        }
+        $("input#installment_amount").val(amount)
+        setTimeout(getWords, 100)
+    }
 
     autoCompleted()
 

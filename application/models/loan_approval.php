@@ -53,7 +53,8 @@ class Loan_approval extends CI_Model {
 
             return $loan_obj;    
         }
-            
+        
+        $this->db->select('*, '. $this->db->dbprefix('loans').'.id as loan_id');    
         $this->db->from('loans');
         $this->db->join('customers', 'customers.id = loans.customer_id');
         $this->db->join('product_types', 'product_types.id = loans.product_type_id');
@@ -318,7 +319,7 @@ class Loan_approval extends CI_Model {
             return $ps_obj;    
         }
         
-        $this->db->select('pay_date, beginning_balance, pay_capital, pay_interest');
+        $this->db->select('pay_date, beginning_balance, pay_capital, pay_interest, paid, '.$this->db->dbprefix('payment_schedules').'.id as pay_id');
         $this->db->from('payment_schedules');
         $this->db->join('loans', 'payment_schedules.loan_id = loans.id');
         $this->db->where('payment_schedules.loan_id',$loan_id);
@@ -345,6 +346,12 @@ class Loan_approval extends CI_Model {
 
             return $ps_obj;
         }
+    }
+
+    // Payment on schedule loan
+    function update_payment_schedule(&$data, $loan_id, $id) {
+        $success = false;
+        return $this->db->where('id', $id)->where('loan_id', $loan_id)->update('payment_schedules', $data);
     }
        
 }

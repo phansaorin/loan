@@ -54,7 +54,6 @@
             <div class="row">
                 <div class="form-group pull-right">
                     <div class="col-md-12 col-xs-10"> <!-- col-xs-offset-2: for to left-->
-                        <button class="btn btn-success pull-right" onclick="printDiv('printSchedule')"><i class="ace-icon fa fa-print bigger-120"></i> Print</button>
                         <button class="btn btn-default btnExit pull-right mr5">Exit</button>
                     </div>
                 </div>
@@ -75,10 +74,38 @@
   }
 
   $(document).ready(function() {
+    updateTotalReschedule()
     $('body').on('click', 'button.btnExit', function() {
       window.location.href = BASE_URL+"loans"
     })
+    $('body').on('change', 'select[name="paid"]', function(event) {
+      event.preventDefault()
+      var $this = $(this)
+      var paid = $this.val()
+      var id = $this.data('pay-id')
+      var loan_id = $("input[name='loan_id']").val()
+      $.post(BASE_URL+"loans/paid/"+loan_id, {paid : paid, id : id}, function(resp) {
+        $this.parents('tr').removeClass("tr-schedule").addClass("success")
+        $.notify(resp.message, resp.type)
+      }, 'json');
+    })
+    $('body').on('click', 'button[name="btn_reschedule"]', function(event) {
+      event.preventDefault()
+      var $this = $(this)
+      $this.attr("target", "_blank")
+      var loan_id = $this.data("loan-id")
+      var total_reschedule = $("input[name='total_reschedule']").val()
+      $.post(BASE_URL+"loans/reschedule", {total_reschedule : total_reschedule, loan_id : loan_id}, function(resp) {
+        window.location.href = BASE_URL+"loans/clone_data/"+loan_id
+      }, 'json');
+    })
   })
+
+  function updateTotalReschedule() {
+    var total_reschedule = $(".reschedule").find("tbody tr.tr-schedule").first().find("input[name='pay_amount']").val()
+    $("input[name='total_reschedule']").val(total_reschedule)
+    setTimeout(updateTotalReschedule, 100)
+  }
 </script>
 
 </html>
