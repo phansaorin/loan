@@ -361,4 +361,12 @@ class Loans extends MAIN_Controller {
     $this->load->view("loans/create", $data);
   }
 
+  // Pay of when reschedule
+  function pay_off() {
+    $loan_id = $this->input->post("loan_id");
+    $data = array('paid' => 2, 'paid_date' => date('Y-m-d'));
+    $this->Loan_approval->pay_off($data, $loan_id);
+    echo json_encode(array('success'=>true, 'message'=>'You have paid off successfully', 'type'=>'success'));
+  }
+
 }
