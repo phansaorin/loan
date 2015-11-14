@@ -23,7 +23,12 @@
         $i = 1;
         $is_first_not_paid = 0;
         foreach ($data_payments as $rows) {
-            $class_paid = $rows['paid'] == 1 ? "success" : "tr-schedule";
+            $class_paid = "tr-schedule";
+            if ($rows['paid'] == 1) {
+                $class_paid = "success";
+            } elseif ($rows['paid'] == 2) {
+                $class_paid = "warning";
+            }
             if ($rows['paid'] == 0) {
                 $is_first_not_paid++;
                 if ($is_first_not_paid == 1) {
@@ -46,8 +51,9 @@
                 <td><?php echo round($rate, 2); ?></td>
                 <td>
                 <?php
-                $paid = array('0' => "No", '1' => "Yes");
-                echo form_dropdown('paid', $paid, $rows['paid'], 'class="form-control paid" data-pay-id="'. $rows['pay_id'] .'" ');
+                $dis_pay_off = $rows['paid'] == 2 ? "disabled" : "";
+                $paid = array('0' => "No", '1' => "Yes", '2' => "Paid-Off");
+                echo form_dropdown('paid', $paid, $rows['paid'], 'class="form-control paid" data-pay-id="'. $rows['pay_id'] .'" '. $dis_pay_off);
                 ?>
                 </td>
             </tr>

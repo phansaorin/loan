@@ -95,9 +95,28 @@
       $this.attr("target", "_blank")
       var loan_id = $this.data("loan-id")
       var total_reschedule = $("input[name='total_reschedule']").val()
-      $.post(BASE_URL+"loans/reschedule", {total_reschedule : total_reschedule, loan_id : loan_id}, function(resp) {
-        window.location.href = BASE_URL+"loans/clone_data/"+loan_id
-      }, 'json');
+      if (confirm("Are you sure you want to re-schedule?")) {
+        if (confirm("Are you sure you want to pay-off before re-schedule?")) {
+          $.post(BASE_URL+"loans/reschedule", {total_reschedule : total_reschedule, loan_id : loan_id}, function(resp) {
+            window.location.href = BASE_URL+"loans/clone_data/"+loan_id
+          }, 'json');
+        } else {
+          $.post(BASE_URL+"loans/reschedule", {total_reschedule : total_reschedule, loan_id : loan_id}, function(resp) {
+            window.location.href = BASE_URL+"loans/clone_data/"+loan_id
+          }, 'json');
+        }
+      };
+    })
+    $('body').on('click', 'button[name="btn_pay_off"]', function(event) {
+      event.preventDefault()
+      var $this = $(this)
+      var url = $this.data("url")
+      var loan_id = $this.data("loan-id")
+      if (confirm("Are you sure you want to pay-off this loan?")) {
+        $.post(url, {loan_id : loan_id}, function(resp) {
+          window.location.href = BASE_URL+"loans/schedule/"+loan_id
+        }, 'json');
+      };
     })
   })
 

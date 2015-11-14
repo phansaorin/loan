@@ -35,7 +35,7 @@ class Loans extends MAIN_Controller {
     $data['pagination'] = $this->pagination->create_links();
     $per_page = $config['per_page'];
     $data['lists'] = $this->Loan_approval->get_all($per_page, $offset);
-    $status = array('' => "-- Please Select --", 'proccessing' => 'Proccesing', 'bad-loan' => 'Bad Loan', 'pay-off' => 'Pay Off');
+    $status = array('' => "-- Please Select --", 'processing' => 'Procesing', 'bad-loan' => 'Bad Loan', 'pay-off' => 'Pay Off');
     $data['status'] = $status;
     $approval = array('' => "-- Please Select --", 'approved' => 'Approved', 'pending' => "Pending");
     $data['approval'] = $approval;
@@ -67,7 +67,7 @@ class Loans extends MAIN_Controller {
 			$product_types[$pt->id] = $pt->product_type_title;
 		}
 		$data['product_types'] = $product_types;
-    $status = array('' => "-- Please Select --", 'proccessing' => 'Proccesing', 'bad-loan' => 'Bad Loan', 'pay-off' => 'Pay Off');
+    $status = array('' => "-- Please Select --", 'processing' => 'Procesing', 'bad-loan' => 'Bad Loan', 'pay-off' => 'Pay Off');
     $data['status'] = $status;
 		$this->load->view("loans/create", $data);
 	}
@@ -356,9 +356,17 @@ class Loans extends MAIN_Controller {
       $product_types[$pt->id] = $pt->product_type_title;
     }
     $data['product_types'] = $product_types;
-    $status = array('' => "-- Please Select --", 'proccessing' => 'Proccesing', 'bad-loan' => 'Bad Loan', 'pay-off' => 'Pay Off');
+    $status = array('' => "-- Please Select --", 'processing' => 'Procesing', 'bad-loan' => 'Bad Loan', 'pay-off' => 'Pay Off');
     $data['status'] = $status;
     $this->load->view("loans/create", $data);
+  }
+
+  // Pay of when reschedule
+  function pay_off() {
+    $loan_id = $this->input->post("loan_id");
+    $data = array('paid' => 2, 'paid_date' => date('Y-m-d'));
+    $this->Loan_approval->pay_off($data, $loan_id);
+    echo json_encode(array('success'=>true, 'message'=>'You have paid off successfully', 'type'=>'success'));
   }
 
 }
