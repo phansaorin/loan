@@ -356,7 +356,7 @@ class Loan_approval extends CI_Model {
     // Pay off payment
     function pay_off($data, $loan_id) {
         return $this->db->where('loan_id', $loan_id)->where('paid', 0)->update('payment_schedules', $data);
-        $loan_data = array('status' => "pay off");
+        $loan_data = array('status' => "pay-off");
         $this->save($loan_data, $loan_id);
     }
        

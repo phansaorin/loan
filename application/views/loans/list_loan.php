@@ -55,12 +55,20 @@
                   if (count($lists) > 0) {
                       $i = 1;
                       foreach ($lists->result() as $rows) {
+                        $class_paid = "tr-schedule";
+                        if ($rows->status == "processing") {
+                            $class_paid = "success";
+                        } elseif ($rows->status == "pay-off") {
+                            $class_paid = "warning";
+                        } elseif ($rows->status == "bad-loan") {
+                            $class_paid = "danger";
+                        }
                         // Status of loan
                         $disabled_approve = 'disabled';
-                        $is_proccesing = "is_proccesing";
+                        $is_processing = "is_processing";
                         if (is_null($rows->status)) {
                           $disabled_approve = '';
-                          $is_proccesing = "";
+                          $is_processing = "";
                         }
                         // Account status approval
                         $account_status = false;
@@ -69,8 +77,11 @@
                           $account_status = true;
                           $disabled = "";
                         }
+                        if ($rows->status == "pay-off") {
+                          $disabled = "disabled";
+                        }
                        ?>
-                          <tr data-id="<?php echo $rows->id; ?>">
+                          <tr data-id="<?php echo $rows->id; ?>" class="<?php echo $class_paid; ?>">
                               <td>
                                 <?php echo $i;//form_hidden('ids[]', $rows->id); ?>
                               </td>
@@ -85,7 +96,7 @@
                               <td>
                               <?php 
                               if ($account_status) { ?>
-                                <span class="disapprove btn btn-xs btn-danger <?php echo $is_proccesing; ?>" <?php echo $disabled_approve; ?>> 
+                                <span class="disapprove btn btn-xs btn-danger <?php echo $is_processing; ?>" <?php echo $disabled_approve; ?>> 
                                   <i class="ace-icon fa fa-times"></i>
                                 </span>
                               <?php
@@ -205,8 +216,8 @@
     $('body').on('click', 'span.disapprove', function() {
       t = $(this)
       id = t.parents("tr").data("id")
-      if (t.hasClass("is_proccesing")) {
-        $.notify("You cannot disapprove on loan account which is proccesing", "warning")
+      if (t.hasClass("is_processing")) {
+        $.notify("You cannot disapprove on loan account which is processing", "warning")
         return false
       };
       if (confirm("Are you sure, you want to disapprove this account?")) {
@@ -222,11 +233,12 @@
       id = t.parents("tr").data('id')
       sel_val = t.val()
       if (confirm("Are you sure, you want to change the status?")) {
-        $.post(BASE_URL+"loans/update_status/"+id, {status: sel_val}, function(resp) {
+        url = sel_val == "pay-off" ? BASE_URL+"loans/pay_off" : BASE_URL+"loans/update_status/"+id
+        $.post(url, {status: sel_val, loan_id: id}, function(resp) {
           if (sel_val.trim() != "") {
-            t.parents("tr").find('span.disapprove').addClass("is_proccesing").attr("disabled", true)
+            t.parents("tr").find('span.disapprove').addClass("is_processing").attr("disabled", true)
           } else {
-            t.parents("tr").find('span.disapprove').removeClass("is_proccesing").removeAttr("disabled")
+            t.parents("tr").find('span.disapprove').removeClass("is_processing").removeAttr("disabled")
           }
           $.notify(resp.message, resp.type)
         }, 'json')
