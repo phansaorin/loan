@@ -8,6 +8,7 @@
             <th>Pay Interest</th>
             <th>Total Payment</th>
             <th>Rate</th>
+            <th>Paid?</th>
         </tr>
     </thead>
     <tbody>
@@ -19,8 +20,15 @@
     $total_rate = 0;
     if (count($data_payments) > 0) {
         $i = 1;
-        foreach ($data_payments as $rows) { ?>
-            <tr>
+        foreach ($data_payments as $rows) { 
+            $class_paid = "tr-schedule";
+            if ($rows['paid'] == 1) {
+                $class_paid = "success";
+            } elseif ($rows['paid'] == 2) {
+                $class_paid = "warning";
+            }
+        ?>
+            <tr class="<?php echo $class_paid; ?>">
                 <td><?php echo $i; ?></td>
                 <td><?php echo date('Y-m-d', strtotime($rows['pay_date'])); ?></td>
                 <td><?php echo round($rows['beginning_balance'], 2); ?></td>
@@ -28,6 +36,17 @@
                 <td><?php echo round($rows['pay_interest'], 2); ?></td>
                 <td><?php echo round($rows['pay_amount'], 2); ?></td>
                 <td><?php echo round($rate, 2); ?></td>
+                <td>
+                <?php
+                $dis_pay_off = 'No';
+                if ($rows['paid'] == 1 ) {
+                    $dis_pay_off = "Yes";
+                } elseif ($rows['paid'] == 2) {
+                    $dis_pay_off = "Paid-Off";
+                }
+                echo $dis_pay_off;
+                ?>
+                </td>
             </tr>
         <?php 
         $i++;
@@ -41,7 +60,7 @@
             <td colspan="3"><label class="pull-right">Total</label></td>
             <td><?php echo $total_pay_capital; ?></td>
             <td><?php echo round($total_pay_interest); ?></td>
-            <td colspan="2"><?php echo $total_pay_amount; ?></td>
+            <td colspan="3"><?php echo $total_pay_amount; ?></td>
         </tr>
     </tbody>
 </table>
