@@ -227,11 +227,11 @@ class Loans extends MAIN_Controller {
   	$data['controller_name'] = strtolower(get_class());
 
   	$data['loan_info'] = $this->Loan_approval->get_info($loan_id);
-  	$data_payments = array();
-  	if ($loan_id!=-1) {
-    	$data_payments = parent::payment_schedule($data['loan_info']);
-  	}
-	   $data['data_payments'] = $data_payments;
+  	$data_schedules = $this->Loan_approval->get_schedule($loan_id);
+    foreach ($data_schedules as $key => $rows) {
+      $data_schedules[$key]['pay_amount'] = $rows['pay_capital'] + $rows['pay_interest'];
+    }
+    $data['data_payments'] = $data_schedules;
 
   	$this->load->view('loans/view_loan', $data);
   }
@@ -271,14 +271,14 @@ class Loans extends MAIN_Controller {
     	$customer_id = $data['loan_info']->customer_id;
     	$data['customer_info'] = $this->Customer->get_info($customer_id);
 
-    	$data_payments = array();
-    	if ($loan_id!=-1) {
-	    	$data_payments = parent::payment_schedule($data['loan_info']);
-    	}
-		$data['data_payments'] = $data_payments;
-		$last_index = count($data_payments) - 1;
-		$data['loan_first_date'] = date('d-M-Y', strtotime($data_payments[0]['pay_date']));
-		$data['loan_deadline_date'] = date('d-M-Y', strtotime($data_payments[$last_index]['pay_date']));
+    	$data_schedules = $this->Loan_approval->get_schedule($loan_id);
+    foreach ($data_schedules as $key => $rows) {
+      $data_schedules[$key]['pay_amount'] = $rows['pay_capital'] + $rows['pay_interest'];
+    }
+    $data['data_payments'] = $data_schedules;
+		$last_index = count($data_schedules) - 1;
+		$data['loan_first_date'] = date('d-M-Y', strtotime($data_schedules[0]['pay_date']));
+		$data['loan_deadline_date'] = date('d-M-Y', strtotime($data_schedules[$last_index]['pay_date']));
 		$data['invoice_code'] = $this->generate_invoice_code($data['loan_info']->loan_account);
 		$data['days_in_khmer'] = array(
 			'Mon' => 'ចន្ធ័',
